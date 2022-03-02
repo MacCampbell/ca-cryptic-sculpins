@@ -9,18 +9,121 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
+```{r}
+library(tidyverse)
+library(ggtree)
+```
+
 ## Phylogeny
 
 Generating a concatenated ML phylogeny matching sampling PCA of all species, i.e.  bamlist_75.
 
 Setting up a sensible path `cat bamlist_75 | awk {'print "bams/"$1'} > bamlist_75.bamlist`    
 
-Calling SNPs     
+__1__ Calling SNPs     
 
 ```{sh, eval=FALSE}
-srun -p high -t 48:00:00 --mem=16G --nodes=1 --ntasks=6 angsd -P 12 \
+srun -p high -t 48:00:00 --mem=16G --nodes=1 --ntasks=4 angsd -P 4 \
 -bam bamlists/bamlist_75.bamlist \
 -out figure-6/plink -anc ref/Final_contigs_300.fasta \
 -minInd 105 -minMaf 0.05  -minMapQ 20 -minQ 20 -GL 1 -doMajorMinor 1 -doMaf 1 -SNP_pval 1e-6 \
 -doGeno 4 -doPost 1 -postCutoff 0.95 -doPlink 2 > figure-6/std.out 2> figure-6/std.err &
 ```
+
+__2__ Convert to vcf and prune (local)     
+
+```{sh, eval=FALSE}
+plink --tped plink.tped --tfam plink.tfam  --out binary --recode --allow-extra-chr --noweb
+plink --ped binary.ped --map binary.map --recode vcf --allow-extra-chr -out recode
+bcftools +prune -l 0.9 -w 10000 recode.vcf  -Ov -o recode.prune.vcf
+```
+
+__3__ Get some sensible names
+
+```{sh, eval=FALSE}
+cat ../data/pcaSc75.edited.clst | cut -f 2 | grep -v FID  > samples.tsv
+bcftools reheader --samples samples.tsv -o recode.prune.reheadered.vcf recode.prune.vcf
+```
+
+__4__ Prepare for ML     
+
+```{sh, eval=FALSE}
+source activate py2;  python2.7 ~/github/mccloud-rrt/vcf2phylip.py -i recode.prune.reheadered.vcf; conda deactivate;
+
+conda activate py3; ~/github/mccloud-rrt/103-remove-invariant.py -p recode.prune.reheadered.min4.phy -o recode.prune.reheadered.min4.asc.phy; conda deactivate;
+```
+
+Remove missing data.
+```{sh,eval=FALSE}
+./201.1-removeMissing.pl recode.prune.reheadered.min4.asc.phy > miss10.phy
+```
+
+__5__ ML     
+
+```{sh,eval=FALSE}
+iqtree -s miss10.phy -st DNA -m MFP+ASC -bb 1000 -alrt 1000 -redo
+iqtree -s miss10.phy.varsites.phy -st DNA -m MFP+ASC -bb 1000 -alrt 1000 -redo
+```
+
+## Plot
+
+```{r}
+tree<-read.tree("figure-6/miss10.phy.varsites.phy.contree")
+```
+
+
+```{r}
+data<-read_tsv("data/pcaSc75.edited.clst") %>% select(FID, Location) %>%
+  mutate(Color = ifelse(Location %in% c("PITMC","PITRC"), "#ACCC66", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "grey50",   #Prickly
+                           ifelse(Location %in% c("SAG"),"grey50", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"#E8BEFF", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "#EEF1A0", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "#DE9E66", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "#439AB0", "grey50")))))))) %>%
+  mutate(Taxon = ifelse(Location %in% c("PITMC","PITRC"), "C. pitensis", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "Other",   #Prickly
+                           ifelse(Location %in% c("SAG"),"Other", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"C. o. ohlone", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "C. o. pomo", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "C. g. gulosus", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "C. g. wintu", "Other"))))))))
+
+```
+```{r}
+t<-ggtree(tree, layout = "daylight") %<+% data 
+t + geom_tippoint(aes(fill=Location), pch=21)
+```
+
+```{r}
+t$data$Bootstrap<-as.numeric(t$data$label)
+
+d <- t$data
+d <- d[!d$isTip,]
+d$label <- as.numeric(d$label)
+d <- d[d$label > 90,]
+
+e <- t$data
+e <- e[!e$isTip,]
+e$label <- as.numeric(e$label)
+e <- e[e$label < 90,]
+e <- e[e$label > 75,]
+
+```
+
+```{r}
+t +
+  geom_point(data=e,  color="gray50", cex=3, alpha=0.75) +
+  geom_point(data=d,  color="black", cex=3, alpha=0.75) +
+  geom_tippoint(aes(fill=Taxon), pch=21, cex=4) +
+  scale_shape_manual(values=c(21), guide=FALSE) +
+  scale_fill_manual(values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50"))
+
+#  scale_fill_manual(values=t$data$Color) +
+#  guides(fill = guide_legend(override.aes=list(shape=21))) 
+#  ggtitle("C") +
+#  theme(plot.title = element_text(size=16, face="bold"))
+
+```
+
+
