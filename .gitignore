@@ -1,3 +1,14 @@
+/outputs/
+/figure*/
+/bams/
+/data/
+/ref/
+
+*html
+
+*DS_Store
+**/.DS_Store
+
 # History files
 .Rhistory
 .Rapp.history
@@ -37,3 +48,4 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+.Rproj.user

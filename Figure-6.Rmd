@@ -1,0 +1,26 @@
+---
+title: "Figure-6"
+author: "Mac Campbell"
+date: "3/1/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Phylogeny
+
+Generating a concatenated ML phylogeny matching sampling PCA of all species, i.e.  bamlist_75.
+
+Setting up a sensible path `cat bamlist_75 | awk {'print "bams/"$1'} > bamlist_75.bamlist`    
+
+Calling SNPs     
+
+```{sh, eval=FALSE}
+srun -p high -t 48:00:00 --mem=16G --nodes=1 --ntasks=6 angsd -P 12 \
+-bam bamlists/bamlist_75.bamlist \
+-out figure-6/plink -anc ref/Final_contigs_300.fasta \
+-minInd 105 -minMaf 0.05  -minMapQ 20 -minQ 20 -GL 1 -doMajorMinor 1 -doMaf 1 -SNP_pval 1e-6 \
+-doGeno 4 -doPost 1 -postCutoff 0.95 -doPlink 2 > figure-6/std.out 2> figure-6/std.err &
+```

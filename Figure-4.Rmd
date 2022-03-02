@@ -1,0 +1,153 @@
+---
+title: "Figure-4"
+author: "Mac Campbell"
+date: "11/16/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## PCA
+
+```{r}
+library(tidyverse)
+library(ggrepel)
+library(ggpubr)
+library(grid)
+library(gridExtra)
+```
+
+```{r}
+covar<-read_delim("data/pcaSc75.covar", col_names=FALSE, delim="\t") %>% select(-X111)
+covar
+```
+
+```{r}
+annot<-read_delim("data/pcaSc75.edited.clst", delim="\t", col_names = TRUE)
+annot
+```
+
+```{r}
+eig <- eigen(covar, symm=TRUE);
+eig$val <- eig$val/sum(eig$val);
+cat(signif(eig$val, digits=3)*100,"\n")
+```
+
+
+### Plot
+
+```{r}
+PC <- as.data.frame(eig$vectors)
+colnames(PC) <- gsub("V", "PC", colnames(PC))
+PC$Pop <- factor(annot$CLUSTER)
+PC$Tra <- factor(annot$IID)
+PC$Lab <- factor(annot$FID)
+PC$Location<-factor(annot$Location)
+
+PC <- PC %>% mutate(Color = ifelse(Location %in% c("PITMC","PITRC"), "#ACCC66", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "grey50",   #Prickly
+                           ifelse(Location %in% c("SAG"),"grey50", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"#E8BEFF", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "#EEF1A0", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "#DE9E66", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "#439AB0", "grey50"))))))))
+```
+
+Calculating centroids
+```{r}
+centroids<-PC %>% select(PC1, PC2, PC3, Location) %>% group_by(Location) %>% summarize_all(mean)
+```
+
+```{r}
+pc12<-ggplot(PC) +
+  geom_point(aes(x=PC1, y=PC2), pch=21, fill=PC$Color, alpha=0.75, cex=2) + 
+  geom_text_repel(data=centroids, aes(x=PC1, y=PC2, label=Location), size=3, max.overlaps = Inf, segment.size=NA) +
+  xlab(paste0("\nPC1 ", round(eig$val[1]*100,2),"%")) +
+  ylab(paste0("PC2 ", round(eig$val[2]*100,2),"%\n")) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  ggtitle("A") +
+  theme(plot.title = element_text(size=14, face="bold")) 
+
+pc12
+ggsave("figure-4/pc12.pdf", width=4, height=5)
+```
+
+
+```{r}
+pc13<-ggplot(PC) +
+  geom_point(aes(x=PC1, y=PC3), pch=21, fill=PC$Color, alpha=0.9) + 
+  geom_text_repel(data=centroids, aes(x=PC1, y=PC3, label=Location), 
+                  size=3, max.overlaps = Inf, segment.size=NA) +
+  xlab(paste0("\nPC1 ", round(eig$val[1]*100,2),"%")) +
+  ylab(paste0("PC3 ", round(eig$val[3]*100,2),"%\n")) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  ggtitle("B") +
+  theme(plot.title = element_text(size=14, face="bold")) 
+pc13
+ggsave("figure-4/pc13.pdf", width=4, height=5)
+```
+
+## Part2
+
+```{r}
+covar<-read_delim("data/pcaScR75.covar", col_names=FALSE, delim="\t") %>% select(-X81)
+annot<-read_delim("data/pcaScR75.edited.clst", delim="\t", col_names = TRUE)
+eig <- eigen(covar, symm=TRUE);
+eig$val <- eig$val/sum(eig$val);
+cat(signif(eig$val, digits=3)*100,"\n")
+PC <- as.data.frame(eig$vectors)
+colnames(PC) <- gsub("V", "PC", colnames(PC))
+PC$Pop <- factor(annot$CLUSTER)
+PC$Tra <- factor(annot$IID)
+PC$Lab <- factor(annot$FID)
+PC$Location<-factor(annot$Location)
+centroids<-PC %>% select(PC1, PC2, PC3, Location) %>% group_by(Location) %>% summarize_all(mean)
+
+PC <- PC %>% mutate(Color = ifelse(Location %in% c("PITMC","PITRC"), "#ACCC66", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "grey50",   #Prickly
+                           ifelse(Location %in% c("SAG"),"grey50", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"#E8BEFF", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "#EEF1A0", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "#DE9E66", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "#439AB0", "grey50"))))))))
+
+PC <- PC %>% mutate(Taxon = ifelse(Location %in% c("PITMC","PITRC"), "C. pitensis", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "Other",   #Prickly
+                           ifelse(Location %in% c("SAG"),"Other", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"C. o. ohlone", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "C. o. pomo", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "C. g. gulosus", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "C. g. wintu", "Other"))))))))
+
+```
+
+```{r}
+pc12r<-ggplot(PC) +
+  geom_point(aes(x=PC1, y=PC2, fill=Taxon), pch=21, alpha=0.9, cex=2) + 
+  geom_text_repel(data=centroids, aes(x=PC1, y=PC2, label=Location), size=3, max.overlaps = Inf, segment.size=NA) +
+  xlab(paste0("\nPC1 ", round(eig$val[1]*100,2),"%")) +
+  ylab(paste0("PC2 ", round(eig$val[2]*100,2),"%\n")) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  ggtitle("B") +
+  theme(plot.title = element_text(size=14, face="bold")) +
+  theme(legend.position = "right") +
+  scale_fill_manual(values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66"))
+pc12r
+ggsave("figure-4/pc12-riffle.pdf", width=4, height=5)
+```
+
+### Combine
+
+```{r}
+blank <- grid.rect(gp=gpar(col="white"))
+ggarrange(pc12, blank, pc12r, ncol=3, widths=c(4,.25,5.2))
+
+ggsave("figure-4/figure-4.pdf", width=11, height=11/2)
+```
+
+
