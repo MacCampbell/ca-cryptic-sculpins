@@ -192,7 +192,7 @@ Drop other outgroups:
 ```{r}
 dnew<-comb %>% filter(Taxon !="Other") %>% bind_rows(outs) %>% mutate(Path=paste0("bams/",File))
 
-write_tsv(dnew %>% select(Path), "bamlists/bamlist-84.bamlist")
+write_tsv(dnew %>% select(Path), "bamlists/bamlist-84.bamlist", col_names = FALSE)
 ```
 
 
