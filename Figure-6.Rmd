@@ -23,9 +23,9 @@ Setting up a sensible path `cat bamlist_75 | awk {'print "bams/"$1'} > bamlist_7
 __1__ Calling SNPs     
 
 ```{sh, eval=FALSE}
-srun -p high -t 48:00:00 --mem=16G --nodes=1 --ntasks=4 angsd -P 4 \
+srun -p high -t 48:00:00 --mem=16G --nodes=1 --ntasks=1 angsd -P 2 \
 -bam bamlists/bamlist_75.bamlist \
--out figure-6/plink -anc ref/Final_contigs_300.fasta \
+-out figure-6/plink  \
 -minInd 105 -minMaf 0.05  -minMapQ 20 -minQ 20 -GL 1 -doMajorMinor 1 -doMaf 1 -SNP_pval 1e-6 \
 -doGeno 4 -doPost 1 -postCutoff 0.95 -doPlink 2 > figure-6/std.out 2> figure-6/std.err &
 ```
@@ -55,7 +55,8 @@ conda activate py3; ~/github/mccloud-rrt/103-remove-invariant.py -p recode.prune
 
 Remove missing data.
 ```{sh,eval=FALSE}
-./201.1-removeMissing.pl recode.prune.reheadered.min4.asc.phy > miss10.phy
+../201.1-removeMissing.pl recode.prune.reheadered.min4.asc.phy > miss10.phy
+seqConverter.pl -dmiss10.phy -on
 ```
 
 __5__ ML     
@@ -87,6 +88,13 @@ data<-read_tsv("data/pcaSc75.edited.clst") %>% select(FID, Location) %>%
                            ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"C. o. ohlone", # C o o
                            ifelse(Location %in% c("RUSEF","RUS"), "C. o. pomo", # C o p
                            ifelse(Location %in% c("MER","MOK"), "C. g. gulosus", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "C. g. wintu", "Other")))))))) %>%
+  mutate(Names = ifelse(Location %in% c("PITMC","PITRC"), "C. pitensis", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "C. asper",   #Prickly
+                           ifelse(Location %in% c("SAG"),"C. beldingii", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"C. o. ohlone", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "C. o. pomo", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "C. g. gulosus", # C g g
                            ifelse(Location %in% c("SAC","McC HB","HSS"), "C. g. wintu", "Other"))))))))
 
 ```
@@ -113,8 +121,8 @@ e <- e[e$label > 75,]
 
 ```{r}
 t +
-  geom_point(data=e,  color="gray50", cex=3, alpha=0.75) +
-  geom_point(data=d,  color="black", cex=3, alpha=0.75) +
+  geom_point(data=e,  color="gray50", cex=3, alpha=0.75, pch=18) +
+  geom_point(data=d,  color="black", cex=3, alpha=0.75, pch=18) +
   geom_tippoint(aes(fill=Taxon), pch=21, cex=4) +
   scale_shape_manual(values=c(21), guide=FALSE) +
   scale_fill_manual(values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50"))
@@ -126,4 +134,72 @@ t +
 
 ```
 
+```{r}
+ggtree(tree) %<+% data +
+  geom_tiplab(aes(color=Taxon), cex=3, align=TRUE) +
+  scale_shape_manual(values=c(21), guide=FALSE) +
+  scale_color_manual(values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50")) +
+  xlim(0,0.2)
 
+ggsave("figure-6/basic-tree.pdf", height=10, width=6)
+
+```
+
+```{r}
+library(ape)
+library(phangorn)
+```
+
+```{r}
+dat<-read.nexus.data(file="figure-6/miss10.nex")
+write.nexus.data(dat, file="figure-6/miss10-forsplits.nex")
+```
+
+
+### Reducing outgroup taxa:
+
+We can prune down the Pit and Prickly sculpins and get more data!! Keeping 2 of each for species tree.
+
+Getting counts:
+```{sh, eval=FALSE}
+ls | grep sort.flt.bam | grep -v bai | while read line; do samtools flagstat $line | grep mapped | head -n 1 >> counts.txt; done;
+ls | grep sort.flt.bam | grep -v bai >> counts.files.txt
+```
+
+```{r}
+files<-read_tsv("figure-6/counts.files.txt", col_names="File")
+counts<-read_tsv("figure-6/counts.txt", col_names="Counts")
+counts$Counts<-gsub(" + 0 mapped (100.00% : N/A)", "", counts$Counts, fixed = TRUE)
+
+counted<-bind_cols(files,counts)
+counted$`Sequence File Name`<-gsub("_RA.sort.flt.bam","",counted$File)
+counted$Counts<-as.numeric(counted$Counts)
+```
+```{r}
+comb<-left_join(data, counted, by=c("FID"="Sequence File Name"))
+```
+
+
+Get top outgroups:
+
+```{r}
+outs<-comb %>% filter(Names %in% c("C. asper","C. beldingii")) %>% group_by(Names) %>% arrange(-Counts) %>% top_n(2)
+outs
+```
+
+Drop other outgroups:
+
+```{r}
+dnew<-comb %>% filter(Taxon !="Other") %>% bind_rows(outs) %>% mutate(Path=paste0("bams/",File))
+
+write_tsv(dnew %>% select(Path), "bamlists/bamlist-84.bamlist")
+```
+
+
+```{sh, eval=FALSE}
+srun -p high -t 48:00:00 --mem=16G --nodes=1 --ntasks=1 angsd -P 2 \
+-bam bamlists/bamlist-84.bamlist \
+-out figure-6/plink84  \
+-minInd 80 -minMaf 0.05  -minMapQ 20 -minQ 20 -GL 1 -doMajorMinor 1 -doMaf 1 -SNP_pval 1e-6 \
+-doGeno 4 -doPost 1 -postCutoff 0.95 -doPlink 2 > figure-6/std84.out 2> figure-6/std84.err &
+```
