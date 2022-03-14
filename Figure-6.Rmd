@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```{r}
 library(tidyverse)
 library(ggtree)
+library(ape)
 ```
 
 ## Phylogeny
@@ -191,7 +192,7 @@ Drop other outgroups:
 
 ```{r}
 dnew<-comb %>% filter(Taxon !="Other") %>% bind_rows(outs) %>% mutate(Path=paste0("bams/",File))
-
+write_tsv(dnew %>% select(FID), "figure-6/84/samples.tsv", col_names = FALSE)
 write_tsv(dnew %>% select(Path), "bamlists/bamlist-84.bamlist", col_names = FALSE)
 ```
 
@@ -202,4 +203,92 @@ srun -p high -t 48:00:00 --mem=16G --nodes=1 --ntasks=1 angsd -P 2 \
 -out figure-6/plink84  \
 -minInd 80 -minMaf 0.05  -minMapQ 20 -minQ 20 -GL 1 -doMajorMinor 1 -doMaf 1 -SNP_pval 1e-6 \
 -doGeno 4 -doPost 1 -postCutoff 0.95 -doPlink 2 > figure-6/std84.out 2> figure-6/std84.err &
+```
+
+Now 1682 variants (from 1421), and 749 unlinked prepared for ASC.
+
+```{r}
+u<-read.tree("figure-6/84/miss10.phy.varsites.phy.contree")
+u2<-root(u, c("Put_RR_A2","McC_M_C7","SagS4_2","SagS2_2"))
+```
+
+```{r}
+ggtree(u2) %<+% dnew +
+  geom_tiplab(aes(color=Taxon), cex=2, align=TRUE) +
+  scale_shape_manual(values=c(21), guide=FALSE) +
+  scale_color_manual(values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50")) +
+  xlim(0,0.4)
+
+ggsave("figure-6/84/basic-tree.pdf", height=10)
+```
+
+Let's make a tree with SVDQuartets!
+
+Generate sample meta for SVDQ
+```{r}
+locs<- dnew %>% select(FID, Location) %>% mutate(Location2=paste0(Location,":"))
+
+summary <- locs %>% group_by(Location2) %>% summarize(Samples=paste0(FID, collapse="\t"))
+write_tsv(summary, "figure-6/svdq/location-summary.tsv")
+```
+Lost MER location due to filtering, now redoing without reducing high missing data individuals. Seeing how that shakes out.
+
+```{r}
+keepers<-dnew %>% # filter(FID %in% u2$tip.label)
+   group_by(Location) %>% summarize(`Sample Size`=n())
+keepers$Location<-gsub(" ","",keepers$Location) 
+
+outs2<-outs %>% select(Names) 
+outs2$Names<-gsub("C. ","",outs2$Names)
+outs2<-outs2 %>% group_by(Names) %>% summarize(`Sample Size`=n()) %>% dplyr::rename(Location=Names)
+
+keepers<-bind_rows(keepers,outs2)
+```
+
+Assigning names   
+
+```{r}
+sp<-read.nexus("figure-6/84/svdq-test.asc.tre")
+sp<-root(sp, c("beldingii","asper"))
+v<-ggtree(sp, branch.length = "none") + geom_tiplab() +
+  geom_nodelab() +
+  xlim(0,10)
+v
+```
+
+```{r}
+ddf<-v$data %>% select(label) %>% mutate(Location=label) %>%
+                          mutate(Taxon = ifelse(Location %in% c("PITMC","PITRC"), "C. pitensis", #Pit
+                           ifelse(Location %in% c("CLS","McCM","NAP","PUTBC","PUT RR","SUS","WAD"), "Other",   #Prickly
+                           ifelse(Location %in% c("SAG"),"Other", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"C. o. ohlone", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "C. o. pomo", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "C. g. gulosus", # C g g
+                           ifelse(Location %in% c("SAC","McCHB","HSS"), "C. g. wintu", "Other")))))))) %>%
+  left_join(keepers)
+```
+
+```{r}
+spt<-ggtree(sp, branch.length = "none") %<+% ddf 
+spt2<-spt +
+    geom_tippoint(aes(x=x+0.2, fill=Taxon, size=`Sample Size`), pch=21, alpha=0.85) +
+    geom_tiplab(size=4, offset = 0.5) +
+  #  geom_nodelab(aes(label=node)) +
+   # geom_nodelab(aes()) +
+    scale_fill_manual(values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50")) +
+    scale_size_continuous(limits=c(1,10), breaks=c(2,4,8)) +
+    xlim(0,10)
+spt2
+
+```
+
+```{r}
+ggtree::rotate(ggtree::rotate(spt2, 21),20) +
+      geom_cladelab(22, label="C. gulosus", offset=1.75, fontface="italic") +
+      geom_cladelab(20, label="C. ohlone", offset=1.75, fontface="italic") +
+      geom_cladelab(27, label="C. pitensis", offset=1.75, fontface="italic") 
+
+#ggtree::rotate(spt2, 21)
+ggsave("figure-6/84/svdq.pdf", height=5)
+
 ```
