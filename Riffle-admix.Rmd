@@ -1,0 +1,287 @@
+---
+title: "Figure-5"
+author: "Mac Campbell"
+date: "11/16/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Plots
+
+
+```{r}
+library(tidyverse)
+library(ggrepel)
+library(ggpubr)
+library(grid)
+library(gridExtra)
+library(viridis)
+```
+
+```{r}
+cols<-viridis(6, option = "turbo", alpha = 0.75)
+#cols<-c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66")
+ggplot()+geom_point(aes(x=c(1,2,3,4,5,6), y=c(1,1,1,1,1,1)), col=cols, cex=5)
+ggsave("figure-x/key.jpeg")
+```
+
+```{r}
+annot<-read_delim("figure-x/pcaScR75.edited.clst", delim="\t", col_names = TRUE)
+annot
+```
+```{r}
+levels<-c("COY","GUAD","PEN","UVAS","RUS","RUSEF",
+                                            "MER","MOK",
+                                            "HSS","McC HB", "SAC",
+                                            "PITMC","PITRC",
+                                            "McC M", "NAP","WAD","SUS","PUT RR","CLS","PUT BC",
+                                            "SAG")
+```
+
+
+Need to generate qopt files.
+
+(base) maccamp@farm:/group/millermrgrp4/maccamp/Sculpin/ADMIX$ gunzip -c admixScR.beagle.gz | wc -l
+121816
+
+srun -p high -t 2:00:00 --nodes=1 $HOME/angsd/misc/NGSadmix -likes admixScR.beagle.gz -K 2 -o ngsadmix-k2 -P 12
+srun -p high -t 2:00:00 --nodes=1 $HOME/angsd/misc/NGSadmix -likes admixScR.beagle.gz -K 3 -o ngsadmix-k3 -P 12
+srun -p high -t 2:00:00 --nodes=1 $HOME/angsd/misc/NGSadmix -likes admixScR.beagle.gz -K 4 -o ngsadmix-k4 -P 12
+srun -p high -t 2:00:00 --nodes=1 $HOME/angsd/misc/NGSadmix -likes admixScR.beagle.gz -K 5 -o ngsadmix-k5 -P 12
+srun -p high -t 2:00:00 --nodes=1 $HOME/angsd/misc/NGSadmix -likes admixScR.beagle.gz -K 6 -o ngsadmix-k6 -P 12
+
+
+```{r}
+q2<-read_delim("figure-x/ngsadmix-k2.qopt", delim=" ", col_names=FALSE) %>% select(X1, X2) %>%
+  rename(Q1=X1, Q2=X2)
+
+df2<-bind_cols(q2, annot)            
+
+df2$Location<-factor(df2$Location, levels=levels)
+                     
+#levels=c("COY","HSS","GUAD", "McC FR", "McC HB","McC SQ","MER","MOK","PEN",
+ #                                           "RUS","RUSEF","SAC","UVAS","PITMC","PITRC","CLS","McC M", "NAP",
+  #                                          "PUT BC","PUT RR","SUS","WAD","SAG"))
+
+q2s<-df2 %>% select(Location, IID, Q1, Q2) %>% arrange(Location, IID) %>%
+  mutate(Index=1:n()) %>% gather(key=Ancestry, value=Q, 3:4) %>% mutate(K=2)
+
+pops2<-q2s  %>% group_by(Location) %>% mutate(Start=min(Index), Stop=max(Index)) %>% 
+  select(Location,Start,Stop) %>% unique() %>% 
+  mutate(Position=round((Start+Stop)/2)) %>% ungroup() %>% unique()
+
+```
+
+```{r}
+p2 <- ggplot(q2s) + 
+  geom_col(aes(x=Index,y=Q, fill=Ancestry), color="NA", size = 0, width = 1) +
+  geom_segment(data=pops2, x = pops2$Start - 0.5, y=0, xend = pops2$Start-0.5, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(data=pops2, x = pops2$Stop[length(pops2$Stop)]  + 0.5, y=0, xend= pops2$Stop[length(pops2$Stop)] + 0.5, yend=1,  alpha=0.9,
+               size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=1, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=0, yend=0, alpha=0.9, size=0.25) +
+  ylim(-0.1,1.01) +
+  xlim(-0.1, pops2$Stop[length(pops2$Stop)]+1) +
+  theme(panel.background = element_blank()) +
+  xlab("") +
+  scale_fill_manual(values=c(cols[6], cols[1])) +
+  theme(legend.position = "") +
+  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) 
+  #scale_x_continuous(breaks=pops2$Position, labels=pops2$Location) 
+
+  
+p2
+
+```
+
+
+```{r}
+q3<-read_delim("figure-x/ngsadmix-k3.qopt", delim=" ", col_names=FALSE) %>% select(X1, X2, X3) %>%
+  rename(Q1=X1, Q2=X2, Q3=X3)
+
+df3<-bind_cols(q3, annot)            
+
+df3$Location<-factor(df3$Location, levels=levels)
+                     
+#levels=c("COY","HSS","GUAD", "McC FR", "McC HB","McC SQ","MER","MOK","PEN",
+ #                                           "RUS","RUSEF","SAC","UVAS","PITMC","PITRC","CLS","McC M", "NAP",
+  #                                          "PUT BC","PUT RR","SUS","WAD","SAG"))
+
+q3s<-df3 %>% select(Location, IID, Q1, Q2, Q3) %>% arrange(Location, IID) %>%
+  mutate(Index=1:n()) %>% gather(key=Ancestry, value=Q, 3:5) %>% mutate(K=3)
+
+pops2<-q3s  %>% group_by(Location) %>% mutate(Start=min(Index), Stop=max(Index)) %>% 
+  select(Location,Start,Stop) %>% unique() %>% 
+  mutate(Position=round((Start+Stop)/2)) %>% ungroup() %>% unique()
+
+
+p3 <- ggplot(q3s) + 
+  geom_col(aes(x=Index,y=Q, fill=Ancestry), color="NA", size = 0, width = 1) +
+  geom_segment(data=pops2, x = pops2$Start - 0.5, y=0, xend = pops2$Start-0.5, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(data=pops2, x = pops2$Stop[length(pops2$Stop)]  + 0.5, y=0, 
+               xend= pops2$Stop[length(pops2$Stop)] + 0.5, yend=1,  alpha=0.9,
+               size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=1, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=0, yend=0, alpha=0.9, size=0.25) +
+  ylim(-0.1,1.01) +
+  xlim(-0.1, pops2$Stop[length(pops2$Stop)]+1) +
+  theme(panel.background = element_blank()) +
+  xlab("") +
+  scale_fill_manual(values=c(cols[6], cols[1], cols[4])) +
+  theme(legend.position = "") +
+  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) 
+  #scale_x_continuous(breaks=pops2$Position, labels=pops2$Location) 
+
+  
+p3
+
+```
+
+```{r}
+q4<-read_delim("figure-x/ngsadmix-k4.qopt", delim=" ", col_names=FALSE) %>% select(X1, X2, X3, X4) %>%
+  rename(Q1=X1, Q2=X2, Q3=X3, Q4=X4)
+
+df4<-bind_cols(q4, annot)            
+
+df4$Location<-factor(df3$Location, levels=levels)
+                     
+#levels=c("COY","HSS","GUAD", "McC FR", "McC HB","McC SQ","MER","MOK","PEN",
+ #                                           "RUS","RUSEF","SAC","UVAS","PITMC","PITRC","CLS","McC M", "NAP",
+  #                                          "PUT BC","PUT RR","SUS","WAD","SAG"))
+
+q4s<-df4 %>% select(Location, IID, Q1, Q2, Q3, Q4) %>% arrange(Location, IID) %>%
+  mutate(Index=1:n()) %>% gather(key=Ancestry, value=Q, 3:6) %>% mutate(K=3)
+
+pops2<-q4s  %>% group_by(Location) %>% mutate(Start=min(Index), Stop=max(Index)) %>% 
+  select(Location,Start,Stop) %>% unique() %>% 
+  mutate(Position=round((Start+Stop)/2)) %>% ungroup() %>% unique()
+
+
+p4 <- ggplot(q4s) + 
+  geom_col(aes(x=Index,y=Q, fill=Ancestry), color="NA", size = 0, width = 1) +
+  geom_segment(data=pops2, x = pops2$Start - 0.5, y=0, xend = pops2$Start-0.5, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(data=pops2, x = pops2$Stop[length(pops2$Stop)]  + 0.5, y=0, 
+               xend= pops2$Stop[length(pops2$Stop)] + 0.5, yend=1,  alpha=0.9,
+               size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=1, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=0, yend=0, alpha=0.9, size=0.25) +
+  ylim(-0.1,1.01) +
+  xlim(-0.1, pops2$Stop[length(pops2$Stop)]+1) +
+  theme(panel.background = element_blank()) +
+  xlab("") +
+  scale_fill_manual(values=c(cols[6], cols[4], cols[1], cols[2])) +
+  theme(legend.position = "") +
+  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) 
+  #scale_x_continuous(breaks=pops2$Position, labels=pops2$Location) 
+
+  
+p4
+
+```
+
+```{r}
+q5<-read_delim("figure-x/ngsadmix-k5.qopt", delim=" ", col_names=FALSE) %>% select(X1, X2, X3, X4, X5) %>%
+  rename(Q1=X1, Q2=X2, Q3=X3, Q4=X4, Q5=X5)
+
+df5<-bind_cols(q5, annot)            
+
+df5$Location<-factor(df3$Location, levels=levels)
+                     
+#levels=c("COY","HSS","GUAD", "McC FR", "McC HB","McC SQ","MER","MOK","PEN",
+ #                                           "RUS","RUSEF","SAC","UVAS","PITMC","PITRC","CLS","McC M", "NAP",
+  #                                          "PUT BC","PUT RR","SUS","WAD","SAG"))
+
+q5s<-df5 %>% select(Location, IID, Q1, Q2, Q3, Q4, Q5) %>% arrange(Location, IID) %>%
+  mutate(Index=1:n()) %>% gather(key=Ancestry, value=Q, 3:7) %>% mutate(K=4)
+
+pops2<-q5s  %>% group_by(Location) %>% mutate(Start=min(Index), Stop=max(Index)) %>% 
+  select(Location,Start,Stop) %>% unique() %>% 
+  mutate(Position=round((Start+Stop)/2)) %>% ungroup() %>% unique()
+
+
+p5 <- ggplot(q5s) + 
+  geom_col(aes(x=Index,y=Q, fill=Ancestry), color="NA", size = 0, width = 1) +
+  geom_segment(data=pops2, x = pops2$Start - 0.5, y=0, xend = pops2$Start-0.5, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(data=pops2, x = pops2$Stop[length(pops2$Stop)]  + 0.5, y=0, 
+               xend= pops2$Stop[length(pops2$Stop)] + 0.5, yend=1,  alpha=0.9,
+               size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=1, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=0, yend=0, alpha=0.9, size=0.25) +
+  ylim(-0.1,1.01) +
+  xlim(-0.1, pops2$Stop[length(pops2$Stop)]+1) +
+  theme(panel.background = element_blank()) +
+  xlab("") +
+  scale_fill_manual(values=c(cols[4], cols[1], cols[6], cols[2], cols[3])) +
+  theme(legend.position = "") +
+  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) 
+  #scale_x_continuous(breaks=pops2$Position, labels=pops2$Location) 
+
+  
+p5
+
+```
+
+
+```{r}
+q6<-read_delim("figure-x/ngsadmix-k6.qopt", delim=" ", col_names=FALSE) %>% select(X1, X2, X3, X4, X5, X6) %>%
+  rename(Q1=X1, Q2=X2, Q3=X3, Q4=X4, Q5=X5, Q6=X6)
+
+df6<-bind_cols(q6, annot)            
+
+df6$Location<-factor(df6$Location, levels=levels)
+                     
+#levels=c("COY","HSS","GUAD", "McC FR", "McC HB","McC SQ","MER","MOK","PEN",
+ #                                           "RUS","RUSEF","SAC","UVAS","PITMC","PITRC","CLS","McC M", "NAP",
+  #                                          "PUT BC","PUT RR","SUS","WAD","SAG"))
+
+q6s<-df6 %>% select(Location, IID, Q1, Q2, Q3, Q4, Q5, Q6) %>% arrange(Location, IID) %>%
+  mutate(Index=1:n()) %>% gather(key=Ancestry, value=Q, 3:8) %>% mutate(K=6)
+
+pops2<-q6s  %>% group_by(Location) %>% mutate(Start=min(Index), Stop=max(Index)) %>% 
+  select(Location,Start,Stop) %>% unique() %>% 
+  mutate(Position=round((Start+Stop)/2)) %>% ungroup() %>% unique() %>%
+  mutate(Color = ifelse(Location %in% c("PITMC","PITRC"), "#ACCC66", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "grey50",   #Prickly
+                           ifelse(Location %in% c("SAG"),"grey50", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"#E8BEFF", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "#EEF1A0", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "#DE9E66", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "#439AB0", "grey50"))))))))
+
+
+```
+
+```{r}
+p6 <- ggplot(q6s) + 
+  geom_col(aes(x=Index,y=Q, fill=Ancestry), color="NA", size = 0, width = 1) +
+  geom_segment(data=pops2, x = pops2$Start - 0.5, y=0, xend = pops2$Start-0.5, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(data=pops2, x = pops2$Stop[length(pops2$Stop)]  + 0.5, y=0, xend= pops2$Stop[length(pops2$Stop)] + 0.5, yend=1,  alpha=0.9,
+               size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=1, yend=1, alpha=0.9, size=0.25) +
+  geom_segment(x=0+.5, xend= max(pops2$Stop)+.5, y=0, yend=0, alpha=0.9, size=0.25) +
+  ylim(-0.1,1.01) +
+  xlim(-0.1, pops2$Stop[length(pops2$Stop)]+1) +
+  theme(panel.background = element_blank()) +
+  xlab("") +
+  scale_fill_manual(values=c(cols[5], cols[1], cols[6], cols[2], cols[3], cols[4] )) +
+  theme(legend.position = "") +
+#  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) 
+  scale_x_continuous(breaks=pops2$Position, labels=pops2$Location)  +
+  theme(axis.text.x = element_text(angle = 45, vjust=0, hjust=.5, color=pops2$Color, face="bold")) 
+
+  
+p6
+
+```
+
+
+```{r}
+ggarrange(p2, p3, p4, p5, p6, ncol=1, heights=c(1,1,1,1,1.35))
+
+ggsave("figure-x/figure-x.jpeg", width=9, height=7)
+ggsave("figure-x/figure-x.pdf", width=9, height=7)
+
+```

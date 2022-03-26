@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 library(tidyverse)
 library(ggtree)
 library(ape)
+library(ggbreak)
 ```
 
 ## Phylogeny
@@ -100,7 +101,7 @@ data<-read_tsv("data/pcaSc75.edited.clst") %>% select(FID, Location) %>%
 
 ```
 ```{r}
-t<-ggtree(tree, layout = "daylight") %<+% data 
+t<-ggtree(tree, layout = "unrooted") %<+% data 
 t + geom_tippoint(aes(fill=Location), pch=21)
 ```
 
@@ -206,20 +207,49 @@ srun -p high -t 48:00:00 --mem=16G --nodes=1 --ntasks=1 angsd -P 2 \
 ```
 
 Now 1682 variants (from 1421), and 749 unlinked prepared for ASC.
+```{r}
+dat<-read.nexus.data(file="figure-6/84/miss10.nex")
+write.nexus.data(dat, file="figure-6/84/miss10-forsplits.nex")
+
+dat<-read.nexus.data(file="figure-6/84/recode.prune.reheadered.min4.asc.nex")
+write.nexus.data(dat, file="figure-6/84/84-for-splits.nex")
+```
 
 ```{r}
 u<-read.tree("figure-6/84/miss10.phy.varsites.phy.contree")
 u2<-root(u, c("Put_RR_A2","McC_M_C7","SagS4_2","SagS2_2"))
+
+#u3<-as.polytomy(u2, feature='node.label', fun=function(x) as.numeric(x) < 50)
+u3<-u2
+t<-ggtree(u3, layout = "rectangular", branch.length = "none") %<+% dnew
+t$data$Bootstrap<-as.numeric(t$data$label)
+
+d <- t$data
+d <- d[!d$isTip,]
+d$label <- as.numeric(d$label)
+d <- d[d$label > 90,]
+
+e <- t$data
+e <- e[!e$isTip,]
+e$label <- as.numeric(e$label)
+e <- e[e$label < 90,]
+e <- e[e$label > 75,]
 ```
 
 ```{r}
-ggtree(u2) %<+% dnew +
-  geom_tiplab(aes(color=Taxon), cex=2, align=TRUE) +
+dem<-t  +
+  geom_point(data=e,  color="gray50", cex=3, alpha=0.75, pch=18) +
+  geom_point(data=d,  color="black", cex=3, alpha=0.75, pch=18) +
+  geom_tippoint(aes(fill=Taxon, x=x+0.01), align=TRUE, pch=21, cex=4) +
   scale_shape_manual(values=c(21), guide=FALSE) +
-  scale_color_manual(values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50")) +
-  xlim(0,0.4)
+  scale_fill_manual(values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50")) 
+#  geom_tiplab(aes(color=Taxon), cex=2, align=TRUE) +
+#  scale_shape_manual(values=c(21), guide=FALSE) +
+ # scale_color_manual(values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50")) +
+#  xlim(0,0.3)
 
-ggsave("figure-6/84/basic-tree.pdf", height=10)
+dem 
+ggsave("figure-6/84/basic-tree-tippoints.pdf", height=10)
 ```
 
 Let's make a tree with SVDQuartets!

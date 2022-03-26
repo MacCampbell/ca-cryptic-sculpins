@@ -1,0 +1,561 @@
+IQ-TREE 2.0-rc1 built Nov 21 2019
+
+Input file name: cytb.phylip.uniqueseq.phy
+Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 97814
+
+REFERENCES
+----------
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+To cite IQ-TREE please use:
+
+Lam-Tung Nguyen, Heiko A. Schmidt, Arndt von Haeseler, and Bui Quang Minh
+(2015) IQ-TREE: A fast and effective stochastic algorithm for estimating
+maximum likelihood phylogenies. Mol Biol Evol, 32:268-274.
+https://doi.org/10.1093/molbev/msu300
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2017) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol Biol Evol, in press.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 83 sequences with 1081 nucleotide sites
+Number of constant sites: 912 (= 84.3663% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 912 (= 84.3663% of all sites)
+Number of parsimony informative sites: 142
+Number of distinct site patterns: 172
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: TN+F+G4
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+TN+F+G4           -2905.865    6149.730 +   0.0793    6212.804 +    0.127    6992.304 +    0.408
+TN+F+I            -2906.022    6150.044 +   0.0678    6213.117 +    0.108    6992.617 +    0.349
+TIM3+F+G4         -2904.344    6148.687 +    0.134    6212.577 +    0.142    6996.246 +   0.0569
+TIM3+F+I          -2904.479    6148.959 +    0.117    6212.849 +    0.124    6996.518 -   0.0496
+TIM+F+G4          -2904.583    6149.167 +    0.105    6213.057 +    0.112    6996.726 -   0.0447
+TIM+F+I           -2904.739    6149.478 +     0.09    6213.368 +   0.0955    6997.037 -   0.0383
+TN+F+I+G4         -2905.519    6151.037 -   0.0413    6214.928 -   0.0438    6998.597 -   0.0176
+TIM2+F+G4         -2905.856    6151.711 -   0.0295    6215.601 -   0.0313    6999.270 -   0.0125
+TIM2+F+I          -2906.011    6152.022 -   0.0252    6215.912 -   0.0268    6999.581 -   0.0107
+TN+F+R2           -2906.680    6153.359 -   0.0129    6217.249 -   0.0137    7000.918 -   0.0055
+TIM3+F+I+G4       -2904.009    6150.019 +   0.0687    6214.732 -   0.0483    7002.563 -  0.00242
+TIM+F+I+G4        -2904.247    6150.493 +   0.0542    6215.206 -   0.0381    7003.038 -  0.00191
+TIM3+F+R2         -2905.183    6152.367 -   0.0212    6217.079 -   0.0149    7004.911 - 0.000747
+TIM+F+R2          -2905.399    6152.799 -   0.0171    6217.512 -    0.012    7005.344 - 0.000602
+TIM2+F+I+G4       -2905.508    6153.017 -   0.0153    6217.730 -   0.0108    7005.562 -  0.00054
+TIM2+F+R2         -2906.668    6155.336 -  0.00481    6220.049 -  0.00338    7007.881 - 0.000169
+GTR+F+G4          -2903.421    6150.842 -   0.0455    6216.383 -   0.0212    7008.372 - 0.000132
+GTR+F+I           -2903.554    6151.108 -   0.0398    6216.649 -   0.0185    7008.638 - 0.000116
+GTR+F+I+G4        -2903.096    6152.193 -   0.0232    6218.570 -  0.00709    7014.709 - 5.57e-06
+GTR+F+R2          -2904.260    6154.520 -  0.00724    6220.897 -  0.00221    7017.036 - 1.74e-06
+GTR+F+R3          -2903.869    6157.737 -  0.00145    6225.803 -  0.00019    7030.224 - 2.38e-09
+TNe+G4            -2941.055    6214.111 - 8.31e-16    6274.772 - 4.43e-15    7041.727 - 7.57e-12
+TNe+I             -2941.272    6214.543 - 6.69e-16    6275.204 - 3.57e-15    7042.160 - 6.09e-12
+HKY+F+G4          -2935.545    6207.090 - 2.78e-14    6269.353 - 6.66e-14    7044.677 - 1.73e-12
+TIM3e+G4          -2939.138    6212.276 - 2.08e-15    6273.734 - 7.44e-15    7044.878 - 1.57e-12
+TIM3e+I           -2939.347    6212.695 - 1.69e-15    6274.154 - 6.03e-15    7045.297 - 1.27e-12
+HKY+F+I           -2936.014    6208.027 - 1.74e-14    6270.290 - 4.16e-14    7045.615 - 1.08e-12
+TIMe+G4           -2939.592    6213.185 - 1.32e-15    6274.644 - 4.72e-15    7045.787 - 9.94e-13
+TIMe+I            -2939.804    6213.608 - 1.07e-15    6275.067 - 3.82e-15    7046.211 - 8.04e-13
+TIM2e+G4          -2940.420    6214.840 - 5.77e-16    6276.298 - 2.07e-15    7047.442 - 4.34e-13
+TNe+I+G4          -2940.586    6215.173 - 4.88e-16    6276.631 - 1.75e-15    7047.775 - 3.68e-13
+TIM2e+I           -2940.641    6215.283 - 4.62e-16    6276.742 - 1.65e-15    7047.885 - 3.48e-13
+HKY+F+R2          -2933.952    6205.903 - 5.03e-14    6268.977 - 8.03e-14    7048.477 - 2.59e-13
+HKY+F+I+G4        -2934.133    6206.265 -  4.2e-14    6269.339 -  6.7e-14    7048.839 - 2.16e-13
+TPM3+F+G4         -2934.197    6206.394 - 3.94e-14    6269.468 - 6.28e-14    7048.968 - 2.03e-13
+TPM3u+F+G4        -2934.197    6206.394 - 3.94e-14    6269.468 - 6.28e-14    7048.968 - 2.03e-13
+K3Pu+F+G4         -2934.315    6206.629 -  3.5e-14    6269.703 - 5.59e-14    7049.203 -  1.8e-13
+TNe+R2            -2941.502    6217.005 - 1.95e-16    6278.464 - 6.99e-16    7049.607 - 1.47e-13
+TPM3u+F+I         -2934.691    6207.382 -  2.4e-14    6270.456 - 3.83e-14    7049.956 - 1.24e-13
+TPM3+F+I          -2934.691    6207.382 -  2.4e-14    6270.456 - 3.83e-14    7049.956 - 1.24e-13
+K3Pu+F+I          -2934.787    6207.573 - 2.18e-14    6270.647 - 3.49e-14    7050.147 - 1.12e-13
+TIM3e+I+G4        -2938.668    6213.336 - 1.22e-15    6275.599 - 2.93e-15    7050.924 - 7.62e-14
+TPM2+F+G4         -2935.521    6209.043 - 1.05e-14    6272.116 - 1.67e-14    7051.616 - 5.39e-14
+TPM2u+F+G4        -2935.521    6209.043 - 1.05e-14    6272.116 - 1.67e-14    7051.616 - 5.39e-14
+TIMe+I+G4         -2939.135    6214.269 - 7.67e-16    6276.532 - 1.84e-15    7051.857 - 4.78e-14
+TPM2+F+I          -2935.990    6209.980 - 6.55e-15    6273.053 - 1.05e-14    7052.553 - 3.37e-14
+TPM2u+F+I         -2935.990    6209.980 - 6.55e-15    6273.053 - 1.05e-14    7052.553 - 3.37e-14
+TIM3e+R2          -2939.603    6215.206 -  4.8e-16    6277.469 - 1.15e-15    7052.794 - 2.99e-14
+TPM3+F+R2         -2932.678    6205.356 - 6.62e-14    6269.246 - 7.02e-14    7052.915 - 2.82e-14
+TPM3u+F+R2        -2932.678    6205.356 - 6.62e-14    6269.246 - 7.02e-14    7052.915 - 2.82e-14
+K3Pu+F+R2         -2932.689    6205.377 - 6.54e-14    6269.268 - 6.95e-14    7052.937 - 2.78e-14
+TPM3u+F+I+G4      -2932.807    6205.614 - 5.81e-14    6269.504 - 6.17e-14    7053.173 - 2.47e-14
+TPM3+F+I+G4       -2932.807    6205.614 - 5.81e-14    6269.504 - 6.17e-14    7053.173 - 2.47e-14
+K3Pu+F+I+G4       -2932.889    6205.778 - 5.36e-14    6269.668 - 5.69e-14    7053.337 - 2.28e-14
+TIM2e+I+G4        -2939.941    6215.883 - 3.42e-16    6278.146 -  8.2e-16    7053.471 - 2.13e-14
+TIMe+R2           -2940.050    6216.101 - 3.07e-16    6278.364 - 7.35e-16    7053.689 - 1.91e-14
+TIM2e+R2          -2940.852    6217.705 - 1.38e-16    6279.968 -  3.3e-16    7055.292 - 8.57e-15
+TPM2u+F+R2        -2933.917    6207.833 - 1.92e-14    6271.723 - 2.03e-14    7055.392 - 8.16e-15
+TPM2+F+R2         -2933.917    6207.833 - 1.92e-14    6271.723 - 2.03e-14    7055.392 - 8.16e-15
+SYM+G4            -2937.487    6212.973 - 1.47e-15    6276.047 - 2.34e-15    7055.546 - 7.55e-15
+TPM2+F+I+G4       -2934.102    6208.204 - 1.59e-14    6272.094 - 1.69e-14    7055.763 - 6.78e-15
+TPM2u+F+I+G4      -2934.102    6208.204 - 1.59e-14    6272.094 - 1.69e-14    7055.763 - 6.78e-15
+SYM+I             -2937.695    6213.390 - 1.19e-15    6276.464 -  1.9e-15    7055.964 - 6.13e-15
+K2P+G4            -2952.766    6235.533 - 1.85e-20    6295.402 - 1.47e-19    7058.164 - 2.04e-15
+K2P+I             -2953.245    6236.489 - 1.15e-20    6296.358 -  9.1e-20    7059.120 - 1.26e-15
+TVM+F+G4          -2933.273    6208.546 - 1.34e-14    6273.259 - 9.44e-15    7061.091 - 4.72e-16
+SYM+I+G4          -2937.021    6214.042 -  8.6e-16    6277.932 - 9.13e-16    7061.601 - 3.66e-16
+TVM+F+I           -2933.765    6209.530 - 8.21e-15    6274.243 - 5.77e-15    7062.074 - 2.89e-16
+K3P+G4            -2951.315    6234.630 - 2.91e-20    6295.291 - 1.55e-19    7062.247 - 2.65e-16
+K2P+I+G4          -2951.684    6235.367 - 2.01e-20    6296.028 - 1.07e-19    7062.984 - 1.83e-16
+K3P+I             -2951.790    6235.579 - 1.81e-20    6296.240 - 9.65e-20    7063.196 - 1.65e-16
+K2P+R2            -2951.863    6235.725 - 1.68e-20    6296.386 - 8.97e-20    7063.342 - 1.53e-16
+SYM+R2            -2937.942    6215.883 - 3.42e-16    6279.774 - 3.63e-16    7063.443 - 1.46e-16
+TVM+F+R2          -2931.707    6207.414 - 2.36e-14    6272.956 -  1.1e-14    7064.945 - 6.87e-17
+TVM+F+I+G4        -2931.864    6207.729 - 2.02e-14    6273.270 - 9.39e-15    7065.259 - 5.87e-17
+K3P+I+G4          -2950.232    6234.464 - 3.16e-20    6295.923 - 1.13e-19    7067.066 - 2.38e-17
+K3P+R2            -2950.403    6234.806 - 2.66e-20    6296.265 - 9.53e-20    7067.408 - 2.01e-17
+TVMe+G4           -2949.311    6234.621 - 2.92e-20    6296.884 -    7e-20    7072.209 - 1.82e-18
+TVMe+I            -2949.825    6235.651 - 1.75e-20    6297.914 - 4.18e-20    7073.239 - 1.09e-18
+TVMe+I+G4         -2948.211    6234.422 - 3.23e-20    6297.495 - 5.15e-20    7076.995 - 1.66e-19
+TVMe+R2           -2948.400    6234.801 - 2.67e-20    6297.874 - 4.26e-20    7077.374 - 1.37e-19
+GTR+F             -2945.756    6233.512 - 5.09e-20    6298.225 - 3.58e-20    7086.057 - 1.79e-21
+F81+F+G4          -3006.859    6347.718 - 8.07e-45    6409.177 - 2.89e-44    7180.320 - 6.08e-42
+F81+F+I           -3007.236    6348.472 - 5.54e-45    6409.931 - 1.98e-44    7181.074 - 4.17e-42
+F81+F+I+G4        -3006.215    6348.430 - 5.66e-45    6410.693 - 1.35e-44    7186.017 - 3.52e-43
+F81+F+R2          -3006.722    6349.443 - 3.41e-45    6411.706 - 8.16e-45    7187.031 - 2.12e-43
+JC+G4             -3027.662    6383.324 -  1.5e-52    6442.407 - 1.76e-51    7200.970 - 1.99e-46
+JC+I              -3028.143    6384.287 - 9.25e-53    6443.370 - 1.09e-51    7201.932 - 1.23e-46
+JC+I+G4           -3026.810    6383.620 - 1.29e-52    6443.489 - 1.02e-51    7206.251 - 1.42e-47
+JC+R2             -3027.147    6384.293 - 9.22e-53    6444.162 - 7.31e-52    7206.924 - 1.02e-47
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: TN+F+G4
+
+Rate parameter R:
+
+  A-C: 1.0000
+  A-G: 12.3383
+  A-T: 1.0000
+  C-G: 1.0000
+  C-T: 2.8530
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.226
+  pi(C) = 0.327
+  pi(G) = 0.1615
+  pi(T) = 0.2855
+
+Rate matrix Q:
+
+  A    -1.365    0.1713     1.044    0.1496
+  C    0.1185   -0.6299   0.08465    0.4268
+  G     1.461    0.1713    -1.782    0.1496
+  T    0.1185    0.4888   0.08465   -0.6919
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 0.1704
+
+ Category  Relative_rate  Proportion
+  1         0.00016        0.25
+  2         0.01863        0.25
+  3         0.3022         0.25
+  4         3.679          0.25
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -2903.1392 (s.e. 105.6239)
+Unconstrained log-likelihood (without tree): -3171.2547
+Number of free parameters (#branches + #model parameters): 169
+Akaike information criterion (AIC) score: 6144.2785
+Corrected Akaike information criterion (AICc) score: 6207.3520
+Bayesian information criterion (BIC) score: 6986.8519
+
+Total tree length (sum of branch lengths): 0.2529
+Sum of internal branch lengths: 0.1908 (75.4265% of tree length)
+
+WARNING: 38 near-zero internal branches (<0.0009) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'AF549116_1_1_1057_Cottus_beldingi_isolate_CBG03_cy' is drawn at root
+Numbers in parentheses are SH-aLRT support (%) / ultrafast bootstrap support (%)
+
++**AF549116_1_1_1057_Cottus_beldingi_isolate_CBG03_cy
+|
++**AF549117_1_1_1057_Cottus_beldingi_isolate_CBG04_cy
+|
+|       +----AY833337_1_1_1050_Cottus_beldingii_cytochrome_b__c
++-------| (98.2/100)
+        |                                           +--EU836699_1_7_1087_Cottus_asper_cytochrome_b__cytb_
+        |                                        +--| (74/74)
+        |                                        |  +--MF326939_1_14412_15492_Cottus_asper_mitochondrion_
+        |                                     +--| (25/61)
+        |                                     |  |           +**KJ509561_1_Cottus_gulosus_isolate_Penitencia1_cyto
+        |                                     |  |        +**| (0/77)
+        |                                     |  |        |  +**KJ509562_1_Cottus_gulosus_isolate_Penitencia2_cyto
+        |                                     |  |     +**| (0/43)
+        |                                     |  |     |  |           +**KJ509563_1_Cottus_gulosus_isolate_Penitencia3_cyto
+        |                                     |  |     |  |        +--| (78.8/95)
+        |                                     |  |     |  |        |  +**KJ509575_1_Cottus_gulosus_isolate_Guadalupe7_cytoc
+        |                                     |  |     |  |     +--| (77.3/95)
+        |                                     |  |     |  |     |  |  +**KJ509564_1_Cottus_gulosus_isolate_Penitencia4_cyto
+        |                                     |  |     |  |     |  +--| (74.6/99)
+        |                                     |  |     |  |     |     +**KJ509565_1_Cottus_gulosus_isolate_Penitencia5_cyto
+        |                                     |  |     |  |  +--| (78.8/69)
+        |                                     |  |     |  |  |  +**KJ509566_1_Cottus_gulosus_isolate_Penitencia6_cyto
+        |                                     |  |     |  +--| (79.4/63)
+        |                                     |  |     |     |  +**KJ509567_1_Cottus_gulosus_isolate_Penitencia7_cyto
+        |                                     |  |     |     +--| (79.9/96)
+        |                                     |  |     |        +**KJ509568_1_Cottus_gulosus_isolate_Penitencia8_cyto
+        |                                     |  |  +--| (77.1/95)
+        |                                     |  |  |  |     +**KJ509572_1_Cottus_gulosus_isolate_Guadalupe4_cytoc
+        |                                     |  |  |  |  +**| (0/79)
+        |                                     |  |  |  |  |  +**KJ509573_1_Cottus_gulosus_isolate_Guadalupe5_cytoc
+        |                                     |  |  |  +--| (85.1/86)
+        |                                     |  |  |     +--KJ509576_1_Cottus_gulosus_isolate_Guadalupe8_cytoc
+        |                                     |  +--| (87.4/94)
+        |                                     |     |     +**KJ509577_1_Cottus_gulosus_isolate_Uvas1_cytochrome
+        |                                     |     |  +**| (0/79)
+        |                                     |     |  |  +**KJ509578_1_Cottus_gulosus_isolate_Uvas2_cytochrome
+        |                                     |     +--| (87.9/97)
+        |                                     |        +--KJ509583_1_Cottus_gulosus_isolate_Uvas7_cytochrome
+        |                            +--------| (98.3/100)
+        |                            |        |         +**JX484692_1_Cottus_gulosus_isolate_RR1_cytochrome_b
+        |                            |        +---------| (99.7/100)
+        |                            |                  +--JX484693_1_Cottus_gulosus_isolate_RR2_cytochrome_b
+        +----------------------------| (100/100)
+                                     |               +**KJ509369_1_Cottus_pitensis_isolate_Pit_11_cytochro
+                                     |            +**| (0/47)
+                                     |            |  +**KJ509370_1_Cottus_pitensis_isolate_Pit_12_cytochro
+                                     |         +**| (0/15)
+                                     |         |  |              +**KJ509373_1_Cottus_pitensis_isolate_Pit_15_cytochro
+                                     |         |  |           +**| (0/23)
+                                     |         |  |           |  +--KJ509397_1_Cottus_pitensis_isolate_Pit_Clark7_cyto
+                                     |         |  |        +**| (0/59)
+                                     |         |  |        |  +**KJ509374_1_Cottus_pitensis_isolate_Pit_16_cytochro
+                                     |         |  |     +--| (83.2/98)
+                                     |         |  |     |  +--KJ509513_1_Cottus_gulosus_isolate_Sac_RM2055_cytoc
+                                     |         |  |  +**| (0/24)
+                                     |         |  |  |  |           +**KJ509395_1_Cottus_pitensis_isolate_Pit_Clark5_cyto
+                                     |         |  |  |  |        +--| (80/97)
+                                     |         |  |  |  |        |  +**KJ509560_1_Cottus_gulosus_isolate_Sac_Dunsmuir2_cy
+                                     |         |  |  |  |     +**| (0/18)
+                                     |         |  |  |  |     |  |     +--KJ509514_1_Cottus_gulosus_isolate_Sac_RM2056_cytoc
+                                     |         |  |  |  |     |  |  +**| (0/44)
+                                     |         |  |  |  |     |  |  |  +**KJ509551_1_Cottus_gulosus_isolate_Sac_Sims8_cytoch
+                                     |         |  |  |  |     |  +--| (0/28)
+                                     |         |  |  |  |     |     +--KJ509524_1_Cottus_gulosus_isolate_Sac_RBDD8_cytoch
+                                     |         |  |  |  |  +**| (0/18)
+                                     |         |  |  |  |  |  |     +--KJ509515_1_Cottus_gulosus_isolate_Sac_RM2057_cytoc
+                                     |         |  |  |  |  |  |  +--| (85.3/95)
+                                     |         |  |  |  |  |  |  |  |     +**KJ509522_1_Cottus_gulosus_isolate_Sac_RBDD6_cytoch
+                                     |         |  |  |  |  |  |  |  |  +**| (0/75)
+                                     |         |  |  |  |  |  |  |  |  |  +**KJ509523_1_Cottus_gulosus_isolate_Sac_RBDD7_cytoch
+                                     |         |  |  |  |  |  |  |  +**| (0/61)
+                                     |         |  |  |  |  |  |  |     |  +**KJ509532_1_Cottus_gulosus_isolate_Sac_Clear2_cytoc
+                                     |         |  |  |  |  |  |  |     +--| (92.2/100)
+                                     |         |  |  |  |  |  |  |        +**KJ509533_1_Cottus_gulosus_isolate_Sac_Clear3_cytoc
+                                     |         |  |  |  |  |  +--| (86.3/81)
+                                     |         |  |  |  |  |     |  +**KJ509516_1_Cottus_gulosus_isolate_Sac_RM2058_cytoc
+                                     |         |  |  |  |  |     +**| (0/70)
+                                     |         |  |  |  |  |        +**KJ509521_1_Cottus_gulosus_isolate_Sac_RBDD5_cytoch
+                                     |         |  |  |  +**| (0/36)
+                                     |         |  |  |     |  +**KJ509400_1_Cottus_pitensis_isolate_Pit_Fall1_cytoc
+                                     |         |  |  |     +--| (95.5/100)
+                                     |         |  |  |        +**KJ509401_1_Cottus_pitensis_isolate_Pit_Fall2_cytoc
+                                     |         |  +**| (0/8)
+                                     |         |     |        +**KJ509408_1_Cottus_pitensis_isolate_Pit_Ash1_cytoch
+                                     |         |     |     +--| (85/99)
+                                     |         |     |     |  +**KJ509409_1_Cottus_pitensis_isolate_Pit_Ash2_cytoch
+                                     |         |     |  +--| (96.9/92)
+                                     |         |     |  |  +**KJ509412_1_Cottus_pitensis_isolate_Pit_Ash5_cytoch
+                                     |         |     +**| (0/18)
+                                     |         |        |     +**KJ509413_1_Cottus_pitensis_isolate_Pit_SF1_cytochr
+                                     |         |        |  +--| (82.2/99)
+                                     |         |        |  |  +**KJ509414_1_Cottus_pitensis_isolate_Pit_SF2_cytochr
+                                     |         |        +--| (85.7/97)
+                                     |         |           +**KJ509420_1_Cottus_pitensis_isolate_Pit_SF8_cytochr
+                                     |  +------| (99.6/100)
+                                     |  |      +--KJ509543_1_Cottus_gulosus_isolate_Sac_Clear13_cyto
+                                     +--| (72.9/88)
+                                        |                        +**KJ509429_1_Cottus_gulosus_isolate_Kaweah1_cytochro
+                                        |                     +**| (0/35)
+                                        |                     |  +**KJ509430_1_Cottus_gulosus_isolate_Kaweah2_cytochro
+                                        |                  +**| (0/34)
+                                        |                  |  |  +--KJ509432_1_Cottus_gulosus_isolate_Kaweah4_cytochro
+                                        |                  |  +**| (0/38)
+                                        |                  |     +--KJ509436_1_Cottus_gulosus_isolate_Kaweah8_cytochro
+                                        |               +**| (0/30)
+                                        |               |  |  +--KJ509431_1_Cottus_gulosus_isolate_Kaweah3_cytochro
+                                        |               |  +--| (78.4/92)
+                                        |               |     +--KJ509443_1_Cottus_gulosus_isolate_Upper_Kingsgs7_c
+                                        |            +--| (85.1/97)
+                                        |            |  |  +**KJ509434_1_Cottus_gulosus_isolate_Kaweah6_cytochro
+                                        |            |  +--| (84/99)
+                                        |            |     +**KJ509442_1_Cottus_gulosus_isolate_Upper_Kingsgs6_c
+                                        |         +--| (86.2/97)
+                                        |         |  |                 +**KJ509454_1_Cottus_gulosus_isolate_Merced1_cytochro
+                                        |         |  |              +--| (85.1/98)
+                                        |         |  |              |  +**KJ509455_1_Cottus_gulosus_isolate_Merced2_cytochro
+                                        |         |  |           +**| (0/73)
+                                        |         |  |           |  |     +**KJ509462_1_Cottus_gulosus_isolate_Upper_Tuolumne1_
+                                        |         |  |           |  |  +**| (0/67)
+                                        |         |  |           |  |  |  +**KJ509463_1_Cottus_gulosus_isolate_Upper_Tuolumne2_
+                                        |         |  |           |  +--| (88.9/98)
+                                        |         |  |           |     |  +**KJ509467_1_Cottus_gulosus_isolate_Upper_Tuolumne6_
+                                        |         |  |           |     +--| (82.7/99)
+                                        |         |  |           |        +**KJ509468_1_Cottus_gulosus_isolate_Upper_Tuolumne7_
+                                        |         |  |        +**| (0/16)
+                                        |         |  |        |  |        +**KJ509485_1_Cottus_gulosus_isolate_SF_American1_cyt
+                                        |         |  |        |  |     +**| (0/9)
+                                        |         |  |        |  |     |  +--KJ509491_1_Cottus_gulosus_isolate_SF_American7_cyt
+                                        |         |  |        |  |  +**| (0/26)
+                                        |         |  |        |  |  |  |     +**KJ509486_1_Cottus_gulosus_isolate_SF_American2_cyt
+                                        |         |  |        |  |  |  |  +**| (0/9)
+                                        |         |  |        |  |  |  |  |  +--KJ509488_1_Cottus_gulosus_isolate_SF_American4_cyt
+                                        |         |  |        |  |  |  +**| (0/12)
+                                        |         |  |        |  |  |     +--KJ509489_1_Cottus_gulosus_isolate_SF_American5_cyt
+                                        |         |  |        |  +--| (92/98)
+                                        |         |  |        |     +--KJ509490_1_Cottus_gulosus_isolate_SF_American6_cyt
+                                        |         |  |     +**| (0/8)
+                                        |         |  |     |  +**KJ509477_1_Cottus_gulosus_isolate_Mokelumne1_cytoc
+                                        |         |  |  +**| (0/18)
+                                        |         |  |  |  +**KJ509478_1_Cottus_gulosus_isolate_Mokelumne2_cytoc
+                                        |         |  +**| (0/25)
+                                        |         |     |  +**KJ509492_1_Cottus_gulosus_isolate_NMF_American1_cy
+                                        |         |     +--| (91.2/100)
+                                        |         |        +**KJ509493_1_Cottus_gulosus_isolate_NMF_American2_cy
+                                        |      +**| (0/73)
+                                        |      |  |  +**KJ509469_1_Cottus_gulosus_isolate_Stanislaus1_cyto
+                                        |      |  +--| (84.7/99)
+                                        |      |     +**KJ509470_1_Cottus_gulosus_isolate_Stanislaus2_cyto
+                                        |   +**| (0/63)
+                                        |   |  +**KJ509506_1_Cottus_gulosus_isolate_Feather7_cytochr
+                                        +---| (95.5/95)
+                                            |           +--KJ509500_1_Cottus_gulosus_isolate_Feather1_cytochr
+                                            |        +**| (0/39)
+                                            |        |  +--KJ509508_1_Cottus_gulosus_isolate_Feather9_cytochr
+                                            |     +--| (90.5/73)
+                                            |     |  +**KJ509504_1_Cottus_gulosus_isolate_Feather5_cytochr
+                                            |  +**| (0/34)
+                                            |  |  |     +**KJ509501_1_Cottus_gulosus_isolate_Feather2_cytochr
+                                            |  |  |  +**| (0/49)
+                                            |  |  |  |  +**KJ509502_1_Cottus_gulosus_isolate_Feather3_cytochr
+                                            |  |  +**| (0/40)
+                                            |  |     +--KJ509505_1_Cottus_gulosus_isolate_Feather6_cytochr
+                                            +--| (79.9/81)
+                                               +--KJ509507_1_Cottus_gulosus_isolate_Feather8_cytochr
+
+Tree in newick format:
+
+(AF549116_1_1_1057_Cottus_beldingi_isolate_CBG03_cy:0.0000010000,AF549117_1_1_1057_Cottus_beldingi_isolate_CBG04_cy:0.0000010000,(AY833337_1_1_1050_Cottus_beldingii_cytochrome_b__c:0.0125573720,((((EU836699_1_7_1087_Cottus_asper_cytochrome_b__cytb_:0.0009523983,MF326939_1_14412_15492_Cottus_asper_mitochondrion_:0.0028756705)74/74:0.0012882122,((((KJ509561_1_Cottus_gulosus_isolate_Penitencia1_cyto:0.0000010000,KJ509562_1_Cottus_gulosus_isolate_Penitencia2_cyto:0.0000010000)0/77:0.0000024239,((((KJ509563_1_Cottus_gulosus_isolate_Penitencia3_cyto:0.0000010000,KJ509575_1_Cottus_gulosus_isolate_Guadalupe7_cytoc:0.0000010000)78.8/95:0.0024130668,(KJ509564_1_Cottus_gulosus_isolate_Penitencia4_cyto:0.0000010000,KJ509565_1_Cottus_gulosus_isolate_Penitencia5_cyto:0.0000010000)74.6/99:0.0011262713)77.3/95:0.0024198574,KJ509566_1_Cottus_gulosus_isolate_Penitencia6_cyto:0.0000028083)78.8/69:0.0009698147,(KJ509567_1_Cottus_gulosus_isolate_Penitencia7_cyto:0.0000010000,KJ509568_1_Cottus_gulosus_isolate_Penitencia8_cyto:0.0000010000)79.9/96:0.0010284982)79.4/63:0.0009579886)0/43:0.0000020101,((KJ509572_1_Cottus_gulosus_isolate_Guadalupe4_cytoc:0.0000010000,KJ509573_1_Cottus_gulosus_isolate_Guadalupe5_cytoc:0.0000010000)0/79:0.0000010000,KJ509576_1_Cottus_gulosus_isolate_Guadalupe8_cytoc:0.0009605652)85.1/86:0.0009601911)77.1/95:0.0009565712,((KJ509577_1_Cottus_gulosus_isolate_Uvas1_cytochrome:0.0000010000,KJ509578_1_Cottus_gulosus_isolate_Uvas2_cytochrome:0.0000010000)0/79:0.0000010000,KJ509583_1_Cottus_gulosus_isolate_Uvas7_cytochrome:0.0009649872)87.9/97:0.0019480863)87.4/94:0.0026229551)25/61:0.0022415549,(JX484692_1_Cottus_gulosus_isolate_RR1_cytochrome_b:0.0000010000,JX484693_1_Cottus_gulosus_isolate_RR2_cytochrome_b:0.0043481799)99.7/100:0.0237868235)98.3/100:0.0204316655,((((KJ509369_1_Cottus_pitensis_isolate_Pit_11_cytochro:0.0000010000,KJ509370_1_Cottus_pitensis_isolate_Pit_12_cytochro:0.0000010000)0/47:0.0000010000,(((((KJ509373_1_Cottus_pitensis_isolate_Pit_15_cytochro:0.0000010000,KJ509397_1_Cottus_pitensis_isolate_Pit_Clark7_cyto:0.0009502513)0/23:0.0000010000,KJ509374_1_Cottus_pitensis_isolate_Pit_16_cytochro:0.0000010000)0/59:0.0000010000,KJ509513_1_Cottus_gulosus_isolate_Sac_RM2055_cytoc:0.0021155647)83.2/98:0.0009493206,((((KJ509395_1_Cottus_pitensis_isolate_Pit_Clark5_cyto:0.0000021137,KJ509560_1_Cottus_gulosus_isolate_Sac_Dunsmuir2_cy:0.0000026326)80/97:0.0010521726,((KJ509514_1_Cottus_gulosus_isolate_Sac_RM2056_cytoc:0.0010530090,KJ509551_1_Cottus_gulosus_isolate_Sac_Sims8_cytoch:0.0000015567)0/44:0.0000109303,KJ509524_1_Cottus_gulosus_isolate_Sac_RBDD8_cytoch:0.0010508312)0/28:0.0009343170)0/18:0.0000010297,((KJ509515_1_Cottus_gulosus_isolate_Sac_RM2057_cytoc:0.0010589659,((KJ509522_1_Cottus_gulosus_isolate_Sac_RBDD6_cytoch:0.0000010000,KJ509523_1_Cottus_gulosus_isolate_Sac_RBDD7_cytoch:0.0000010000)0/75:0.0000010000,(KJ509532_1_Cottus_gulosus_isolate_Sac_Clear2_cytoc:0.0000010000,KJ509533_1_Cottus_gulosus_isolate_Sac_Clear3_cytoc:0.0000010000)92.2/100:0.0010580913)0/61:0.0000020056)85.3/95:0.0010536393,(KJ509516_1_Cottus_gulosus_isolate_Sac_RM2058_cytoc:0.0000010000,KJ509521_1_Cottus_gulosus_isolate_Sac_RBDD5_cytoch:0.0000010000)0/70:0.0000010000)86.3/81:0.0010521730)0/18:0.0000010000,(KJ509400_1_Cottus_pitensis_isolate_Pit_Fall1_cytoc:0.0000010000,KJ509401_1_Cottus_pitensis_isolate_Pit_Fall2_cytoc:0.0000010000)95.5/100:0.0031987818)0/36:0.0000020920)0/24:0.0000029926,(((KJ509408_1_Cottus_pitensis_isolate_Pit_Ash1_cytoch:0.0000010000,KJ509409_1_Cottus_pitensis_isolate_Pit_Ash2_cytoch:0.0000010000)85/99:0.0009389701,KJ509412_1_Cottus_pitensis_isolate_Pit_Ash5_cytoch:0.0000025672)96.9/92:0.0028282069,((KJ509413_1_Cottus_pitensis_isolate_Pit_SF1_cytochr:0.0000010000,KJ509414_1_Cottus_pitensis_isolate_Pit_SF2_cytochr:0.0000010000)82.2/99:0.0009388936,KJ509420_1_Cottus_pitensis_isolate_Pit_SF8_cytochr:0.0000010000)85.7/97:0.0009390783)0/18:0.0000029696)0/8:0.0000010000)0/15:0.0000024994,KJ509543_1_Cottus_gulosus_isolate_Sac_Clear13_cyto:0.0009427913)99.6/100:0.0161287763,((((((((KJ509429_1_Cottus_gulosus_isolate_Kaweah1_cytochro:0.0000010000,KJ509430_1_Cottus_gulosus_isolate_Kaweah2_cytochro:0.0000010000)0/35:0.0000010000,(KJ509432_1_Cottus_gulosus_isolate_Kaweah4_cytochro:0.0009544851,KJ509436_1_Cottus_gulosus_isolate_Kaweah8_cytochro:0.0009542098)0/38:0.0000010000)0/34:0.0000028171,(KJ509431_1_Cottus_gulosus_isolate_Kaweah3_cytochro:0.0018934237,KJ509443_1_Cottus_gulosus_isolate_Upper_Kingsgs7_c:0.0009500323)78.4/92:0.0009451062)0/30:0.0000027841,(KJ509434_1_Cottus_gulosus_isolate_Kaweah6_cytochro:0.0000010000,KJ509442_1_Cottus_gulosus_isolate_Upper_Kingsgs6_c:0.0000010000)84/99:0.0009460639)85.1/97:0.0009421611,((((((KJ509454_1_Cottus_gulosus_isolate_Merced1_cytochro:0.0000010000,KJ509455_1_Cottus_gulosus_isolate_Merced2_cytochro:0.0000010000)85.1/98:0.0009317396,((KJ509462_1_Cottus_gulosus_isolate_Upper_Tuolumne1_:0.0000010000,KJ509463_1_Cottus_gulosus_isolate_Upper_Tuolumne2_:0.0000010000)0/67:0.0000010000,(KJ509467_1_Cottus_gulosus_isolate_Upper_Tuolumne6_:0.0000020490,KJ509468_1_Cottus_gulosus_isolate_Upper_Tuolumne7_:0.0000020481)82.7/99:0.0009311927)88.9/98:0.0009311390)0/73:0.0000029350,(((KJ509485_1_Cottus_gulosus_isolate_SF_American1_cyt:0.0000010000,KJ509491_1_Cottus_gulosus_isolate_SF_American7_cyt:0.0009405063)0/9:0.0000010000,((KJ509486_1_Cottus_gulosus_isolate_SF_American2_cyt:0.0000010000,KJ509488_1_Cottus_gulosus_isolate_SF_American4_cyt:0.0009433964)0/9:0.0000010000,KJ509489_1_Cottus_gulosus_isolate_SF_American5_cyt:0.0009403915)0/12:0.0000010000)0/26:0.0000010000,KJ509490_1_Cottus_gulosus_isolate_SF_American6_cyt:0.0018862158)92/98:0.0018867191)0/16:0.0000010000,KJ509477_1_Cottus_gulosus_isolate_Mokelumne1_cytoc:0.0000010000)0/8:0.0000010000,KJ509478_1_Cottus_gulosus_isolate_Mokelumne2_cytoc:0.0000010000)0/18:0.0000010000,(KJ509492_1_Cottus_gulosus_isolate_NMF_American1_cy:0.0000010000,KJ509493_1_Cottus_gulosus_isolate_NMF_American2_cy:0.0000010000)91.2/100:0.0009451906)0/25:0.0000010000)86.2/97:0.0010022869,(KJ509469_1_Cottus_gulosus_isolate_Stanislaus1_cyto:0.0000029963,KJ509470_1_Cottus_gulosus_isolate_Stanislaus2_cyto:0.0000029983)84.7/99:0.0009496062)0/73:0.0000023623,KJ509506_1_Cottus_gulosus_isolate_Feather7_cytochr:0.0000010000)0/63:0.0000010000,((((KJ509500_1_Cottus_gulosus_isolate_Feather1_cytochr:0.0010423861,KJ509508_1_Cottus_gulosus_isolate_Feather9_cytochr:0.0021187898)0/39:0.0000026247,KJ509504_1_Cottus_gulosus_isolate_Feather5_cytochr:0.0000010000)90.5/73:0.0010478390,((KJ509501_1_Cottus_gulosus_isolate_Feather2_cytochr:0.0000010000,KJ509502_1_Cottus_gulosus_isolate_Feather3_cytochr:0.0000010000)0/49:0.0000010000,KJ509505_1_Cottus_gulosus_isolate_Feather6_cytochr:0.0010461194)0/40:0.0000010000)0/34:0.0000023620,KJ509507_1_Cottus_gulosus_isolate_Feather8_cytochr:0.0021133166)79.9/81:0.0010452276)95.5/95:0.0089694849)72.9/88:0.0072595848)100/100:0.0650593167)98.2/100:0.0191630036);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -2903.277300
+Robinson-Foulds distance between ML tree and consensus tree: 28
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++--AF549116_1_1_1057_Cottus_beldingi_isolate_CBG03_cy
+|
++--AF549117_1_1_1057_Cottus_beldingi_isolate_CBG04_cy
+|
+|       +----AY833337_1_1_1050_Cottus_beldingii_cytochrome_b__c
++-------| (100)
+        |                                           +--EU836699_1_7_1087_Cottus_asper_cytochrome_b__cytb_
+        |                                        +--| (74)
+        |                                        |  +--MF326939_1_14412_15492_Cottus_asper_mitochondrion_
+        |                                     +--| (61)
+        |                                     |  |           +--KJ509561_1_Cottus_gulosus_isolate_Penitencia1_cyto
+        |                                     |  |        +--| (77)
+        |                                     |  |        |  +--KJ509562_1_Cottus_gulosus_isolate_Penitencia2_cyto
+        |                                     |  |     +--| (43)
+        |                                     |  |     |  |           +--KJ509563_1_Cottus_gulosus_isolate_Penitencia3_cyto
+        |                                     |  |     |  |        +--| (95)
+        |                                     |  |     |  |        |  +--KJ509575_1_Cottus_gulosus_isolate_Guadalupe7_cytoc
+        |                                     |  |     |  |     +--| (95)
+        |                                     |  |     |  |     |  |  +--KJ509564_1_Cottus_gulosus_isolate_Penitencia4_cyto
+        |                                     |  |     |  |     |  +--| (99)
+        |                                     |  |     |  |     |     +--KJ509565_1_Cottus_gulosus_isolate_Penitencia5_cyto
+        |                                     |  |     |  |  +--| (69)
+        |                                     |  |     |  |  |  +--KJ509566_1_Cottus_gulosus_isolate_Penitencia6_cyto
+        |                                     |  |     |  +--| (63)
+        |                                     |  |     |     |  +--KJ509567_1_Cottus_gulosus_isolate_Penitencia7_cyto
+        |                                     |  |     |     +--| (96)
+        |                                     |  |     |        +--KJ509568_1_Cottus_gulosus_isolate_Penitencia8_cyto
+        |                                     |  |  +--| (95)
+        |                                     |  |  |  |     +--KJ509572_1_Cottus_gulosus_isolate_Guadalupe4_cytoc
+        |                                     |  |  |  |  +--| (79)
+        |                                     |  |  |  |  |  +--KJ509573_1_Cottus_gulosus_isolate_Guadalupe5_cytoc
+        |                                     |  |  |  +--| (86)
+        |                                     |  |  |     +--KJ509576_1_Cottus_gulosus_isolate_Guadalupe8_cytoc
+        |                                     |  +--| (94)
+        |                                     |     |     +--KJ509577_1_Cottus_gulosus_isolate_Uvas1_cytochrome
+        |                                     |     |  +--| (79)
+        |                                     |     |  |  +--KJ509578_1_Cottus_gulosus_isolate_Uvas2_cytochrome
+        |                                     |     +--| (97)
+        |                                     |        +--KJ509583_1_Cottus_gulosus_isolate_Uvas7_cytochrome
+        |                            +--------| (100)
+        |                            |        |         +--JX484692_1_Cottus_gulosus_isolate_RR1_cytochrome_b
+        |                            |        +---------| (100)
+        |                            |                  +--JX484693_1_Cottus_gulosus_isolate_RR2_cytochrome_b
+        +----------------------------| (100)
+                                     |                  +--KJ509369_1_Cottus_pitensis_isolate_Pit_11_cytochro
+                                     |               +--| (47)
+                                     |               |  +--KJ509370_1_Cottus_pitensis_isolate_Pit_12_cytochro
+                                     |            +--| (11)
+                                     |            |  |           +--KJ509373_1_Cottus_pitensis_isolate_Pit_15_cytochro
+                                     |            |  |        +--| (61)
+                                     |            |  |        |  +--KJ509374_1_Cottus_pitensis_isolate_Pit_16_cytochro
+                                     |            |  |     +--| (59)
+                                     |            |  |     |  +--KJ509397_1_Cottus_pitensis_isolate_Pit_Clark7_cyto
+                                     |            |  |  +--| (98)
+                                     |            |  |  |  +--KJ509513_1_Cottus_gulosus_isolate_Sac_RM2055_cytoc
+                                     |            |  +--| (24)
+                                     |            |     |           +--KJ509395_1_Cottus_pitensis_isolate_Pit_Clark5_cyto
+                                     |            |     |        +--| (97)
+                                     |            |     |        |  +--KJ509560_1_Cottus_gulosus_isolate_Sac_Dunsmuir2_cy
+                                     |            |     |     +--| (18)
+                                     |            |     |     |  |     +--KJ509514_1_Cottus_gulosus_isolate_Sac_RM2056_cytoc
+                                     |            |     |     |  |  +--| (44)
+                                     |            |     |     |  |  |  +--KJ509551_1_Cottus_gulosus_isolate_Sac_Sims8_cytoch
+                                     |            |     |     |  +--| (28)
+                                     |            |     |     |     +--KJ509524_1_Cottus_gulosus_isolate_Sac_RBDD8_cytoch
+                                     |            |     |  +--| (21)
+                                     |            |     |  |  |  +--KJ509400_1_Cottus_pitensis_isolate_Pit_Fall1_cytoc
+                                     |            |     |  |  +--| (100)
+                                     |            |     |  |     +--KJ509401_1_Cottus_pitensis_isolate_Pit_Fall2_cytoc
+                                     |            |     +--| (36)
+                                     |            |        |     +--KJ509515_1_Cottus_gulosus_isolate_Sac_RM2057_cytoc
+                                     |            |        |  +--| (95)
+                                     |            |        |  |  |     +--KJ509522_1_Cottus_gulosus_isolate_Sac_RBDD6_cytoch
+                                     |            |        |  |  |  +--| (75)
+                                     |            |        |  |  |  |  +--KJ509523_1_Cottus_gulosus_isolate_Sac_RBDD7_cytoch
+                                     |            |        |  |  +--| (61)
+                                     |            |        |  |     |  +--KJ509532_1_Cottus_gulosus_isolate_Sac_Clear2_cytoc
+                                     |            |        |  |     +--| (100)
+                                     |            |        |  |        +--KJ509533_1_Cottus_gulosus_isolate_Sac_Clear3_cytoc
+                                     |            |        +--| (81)
+                                     |            |           |  +--KJ509516_1_Cottus_gulosus_isolate_Sac_RM2058_cytoc
+                                     |            |           +--| (70)
+                                     |            |              +--KJ509521_1_Cottus_gulosus_isolate_Sac_RBDD5_cytoch
+                                     |         +--| (33)
+                                     |         |  |        +--KJ509413_1_Cottus_pitensis_isolate_Pit_SF1_cytochr
+                                     |         |  |     +--| (99)
+                                     |         |  |     |  +--KJ509414_1_Cottus_pitensis_isolate_Pit_SF2_cytochr
+                                     |         |  |  +--| (97)
+                                     |         |  |  |  +--KJ509420_1_Cottus_pitensis_isolate_Pit_SF8_cytochr
+                                     |         |  +--| (20)
+                                     |         |     +--KJ509543_1_Cottus_gulosus_isolate_Sac_Clear13_cyto
+                                     |  +------| (100)
+                                     |  |      |     +--KJ509408_1_Cottus_pitensis_isolate_Pit_Ash1_cytoch
+                                     |  |      |  +--| (99)
+                                     |  |      |  |  +--KJ509409_1_Cottus_pitensis_isolate_Pit_Ash2_cytoch
+                                     |  |      +--| (92)
+                                     |  |         +--KJ509412_1_Cottus_pitensis_isolate_Pit_Ash5_cytoch
+                                     +--| (88)
+                                        |                                    +--KJ509429_1_Cottus_gulosus_isolate_Kaweah1_cytochro
+                                        |                                 +--| (35)
+                                        |                                 |  +--KJ509430_1_Cottus_gulosus_isolate_Kaweah2_cytochro
+                                        |                              +--| (34)
+                                        |                              |  |  +--KJ509432_1_Cottus_gulosus_isolate_Kaweah4_cytochro
+                                        |                              |  +--| (38)
+                                        |                              |     +--KJ509436_1_Cottus_gulosus_isolate_Kaweah8_cytochro
+                                        |                           +--| (30)
+                                        |                           |  |  +--KJ509434_1_Cottus_gulosus_isolate_Kaweah6_cytochro
+                                        |                           |  +--| (99)
+                                        |                           |     +--KJ509442_1_Cottus_gulosus_isolate_Upper_Kingsgs6_c
+                                        |                        +--| (97)
+                                        |                        |  |  +--KJ509431_1_Cottus_gulosus_isolate_Kaweah3_cytochro
+                                        |                        |  +--| (92)
+                                        |                        |     +--KJ509443_1_Cottus_gulosus_isolate_Upper_Kingsgs7_c
+                                        |                     +--| (31)
+                                        |                     |  |     +--KJ509454_1_Cottus_gulosus_isolate_Merced1_cytochro
+                                        |                     |  |  +--| (98)
+                                        |                     |  |  |  +--KJ509455_1_Cottus_gulosus_isolate_Merced2_cytochro
+                                        |                     |  +--| (73)
+                                        |                     |     |     +--KJ509462_1_Cottus_gulosus_isolate_Upper_Tuolumne1_
+                                        |                     |     |  +--| (67)
+                                        |                     |     |  |  +--KJ509463_1_Cottus_gulosus_isolate_Upper_Tuolumne2_
+                                        |                     |     +--| (98)
+                                        |                     |        |  +--KJ509467_1_Cottus_gulosus_isolate_Upper_Tuolumne6_
+                                        |                     |        +--| (99)
+                                        |                     |           +--KJ509468_1_Cottus_gulosus_isolate_Upper_Tuolumne7_
+                                        |                  +--| (16)
+                                        |                  |  |           +--KJ509485_1_Cottus_gulosus_isolate_SF_American1_cyt
+                                        |                  |  |        +--| (31)
+                                        |                  |  |        |  +--KJ509486_1_Cottus_gulosus_isolate_SF_American2_cyt
+                                        |                  |  |     +--| (20)
+                                        |                  |  |     |  |  +--KJ509488_1_Cottus_gulosus_isolate_SF_American4_cyt
+                                        |                  |  |     |  +--| (23)
+                                        |                  |  |     |     +--KJ509489_1_Cottus_gulosus_isolate_SF_American5_cyt
+                                        |                  |  |  +--| (26)
+                                        |                  |  |  |  +--KJ509491_1_Cottus_gulosus_isolate_SF_American7_cyt
+                                        |                  |  +--| (98)
+                                        |                  |     +--KJ509490_1_Cottus_gulosus_isolate_SF_American6_cyt
+                                        |               +--| (17)
+                                        |               |  |  +--KJ509492_1_Cottus_gulosus_isolate_NMF_American1_cy
+                                        |               |  +--| (100)
+                                        |               |     +--KJ509493_1_Cottus_gulosus_isolate_NMF_American2_cy
+                                        |            +--| (24)
+                                        |            |  +--KJ509478_1_Cottus_gulosus_isolate_Mokelumne2_cytoc
+                                        |         +--| (97)
+                                        |         |  +--KJ509477_1_Cottus_gulosus_isolate_Mokelumne1_cytoc
+                                        |      +--| (73)
+                                        |      |  |  +--KJ509469_1_Cottus_gulosus_isolate_Stanislaus1_cyto
+                                        |      |  +--| (99)
+                                        |      |     +--KJ509470_1_Cottus_gulosus_isolate_Stanislaus2_cyto
+                                        |   +--| (63)
+                                        |   |  +--KJ509506_1_Cottus_gulosus_isolate_Feather7_cytochr
+                                        +---| (95)
+                                            |           +--KJ509500_1_Cottus_gulosus_isolate_Feather1_cytochr
+                                            |        +--| (60)
+                                            |        |  +--KJ509504_1_Cottus_gulosus_isolate_Feather5_cytochr
+                                            |     +--| (73)
+                                            |     |  +--KJ509508_1_Cottus_gulosus_isolate_Feather9_cytochr
+                                            |  +--| (34)
+                                            |  |  |     +--KJ509501_1_Cottus_gulosus_isolate_Feather2_cytochr
+                                            |  |  |  +--| (49)
+                                            |  |  |  |  +--KJ509502_1_Cottus_gulosus_isolate_Feather3_cytochr
+                                            |  |  +--| (40)
+                                            |  |     +--KJ509505_1_Cottus_gulosus_isolate_Feather6_cytochr
+                                            +--| (81)
+                                               +--KJ509507_1_Cottus_gulosus_isolate_Feather8_cytochr
+
+
+Consensus tree in newick format: 
+
+(AF549116_1_1_1057_Cottus_beldingi_isolate_CBG03_cy:0.0000028127,AF549117_1_1_1057_Cottus_beldingi_isolate_CBG04_cy:0.0000028127,(AY833337_1_1_1050_Cottus_beldingii_cytochrome_b__c:0.0125561354,((((EU836699_1_7_1087_Cottus_asper_cytochrome_b__cytb_:0.0009525516,MF326939_1_14412_15492_Cottus_asper_mitochondrion_:0.0028761103)74:0.0012887074,((((KJ509561_1_Cottus_gulosus_isolate_Penitencia1_cyto:0.0000028127,KJ509562_1_Cottus_gulosus_isolate_Penitencia2_cyto:0.0000028127)77:0.0000028127,((((KJ509563_1_Cottus_gulosus_isolate_Penitencia3_cyto:0.0000028127,KJ509575_1_Cottus_gulosus_isolate_Guadalupe7_cytoc:0.0000028127)95:0.0024153123,(KJ509564_1_Cottus_gulosus_isolate_Penitencia4_cyto:0.0000028127,KJ509565_1_Cottus_gulosus_isolate_Penitencia5_cyto:0.0000028127)99:0.0011266101)95:0.0024170968,KJ509566_1_Cottus_gulosus_isolate_Penitencia6_cyto:0.0000028127)69:0.0009708661,(KJ509567_1_Cottus_gulosus_isolate_Penitencia7_cyto:0.0000028127,KJ509568_1_Cottus_gulosus_isolate_Penitencia8_cyto:0.0000028127)96:0.0010286263)63:0.0009587593)43:0.0000028127,((KJ509572_1_Cottus_gulosus_isolate_Guadalupe4_cytoc:0.0000028127,KJ509573_1_Cottus_gulosus_isolate_Guadalupe5_cytoc:0.0000028127)79:0.0000028127,KJ509576_1_Cottus_gulosus_isolate_Guadalupe8_cytoc:0.0009607278)86:0.0009603426)95:0.0009567261,((KJ509577_1_Cottus_gulosus_isolate_Uvas1_cytochrome:0.0000028127,KJ509578_1_Cottus_gulosus_isolate_Uvas2_cytochrome:0.0000028127)79:0.0000028127,KJ509583_1_Cottus_gulosus_isolate_Uvas7_cytochrome:0.0009651463)97:0.0019484343)94:0.0026242276)61:0.0022419293,(JX484692_1_Cottus_gulosus_isolate_RR1_cytochrome_b:0.0000028127,JX484693_1_Cottus_gulosus_isolate_RR2_cytochrome_b:0.0043497397)100:0.0237941673)100:0.0204419105,(((((KJ509369_1_Cottus_pitensis_isolate_Pit_11_cytochro:0.0000028127,KJ509370_1_Cottus_pitensis_isolate_Pit_12_cytochro:0.0000028127)47:0.0000028127,((((KJ509373_1_Cottus_pitensis_isolate_Pit_15_cytochro:0.0000028127,KJ509374_1_Cottus_pitensis_isolate_Pit_16_cytochro:0.0000028127)61:0.0000028127,KJ509397_1_Cottus_pitensis_isolate_Pit_Clark7_cyto:0.0009503995)59:0.0000028127,KJ509513_1_Cottus_gulosus_isolate_Sac_RM2055_cytoc:0.0021159402)98:0.0009493979,((((KJ509395_1_Cottus_pitensis_isolate_Pit_Clark5_cyto:0.0000028127,KJ509560_1_Cottus_gulosus_isolate_Sac_Dunsmuir2_cy:0.0000028127)97:0.0010531780,((KJ509514_1_Cottus_gulosus_isolate_Sac_RM2056_cytoc:0.0010539650,KJ509551_1_Cottus_gulosus_isolate_Sac_Sims8_cytoch:0.0009352546)44:0.0000032139,KJ509524_1_Cottus_gulosus_isolate_Sac_RBDD8_cytoch:0.0010518403)28:0.0000028127)18:0.0000028127,(KJ509400_1_Cottus_pitensis_isolate_Pit_Fall1_cytoc:0.0000028127,KJ509401_1_Cottus_pitensis_isolate_Pit_Fall2_cytoc:0.0000028127)100:0.0031993447)21:0.0000028127,((KJ509515_1_Cottus_gulosus_isolate_Sac_RM2057_cytoc:0.0010600693,((KJ509522_1_Cottus_gulosus_isolate_Sac_RBDD6_cytoch:0.0000028127,KJ509523_1_Cottus_gulosus_isolate_Sac_RBDD7_cytoch:0.0000028127)75:0.0000028127,(KJ509532_1_Cottus_gulosus_isolate_Sac_Clear2_cytoc:0.0000028127,KJ509533_1_Cottus_gulosus_isolate_Sac_Clear3_cytoc:0.0000028127)100:0.0010591726)61:0.0000028127)95:0.0010547353,(KJ509516_1_Cottus_gulosus_isolate_Sac_RM2058_cytoc:0.0000028127,KJ509521_1_Cottus_gulosus_isolate_Sac_RBDD5_cytoch:0.0000028127)70:0.0000028127)81:0.0010532829)36:0.0000028127)24:0.0000028127)11:0.0000028127,(((KJ509413_1_Cottus_pitensis_isolate_Pit_SF1_cytochr:0.0000028127,KJ509414_1_Cottus_pitensis_isolate_Pit_SF2_cytochr:0.0000028127)99:0.0009390665,KJ509420_1_Cottus_pitensis_isolate_Pit_SF8_cytochr:0.0000028127)97:0.0009391826,KJ509543_1_Cottus_gulosus_isolate_Sac_Clear13_cyto:0.0009428834)20:0.0000028127)33:0.0000028215,((KJ509408_1_Cottus_pitensis_isolate_Pit_Ash1_cytoch:0.0000028127,KJ509409_1_Cottus_pitensis_isolate_Pit_Ash2_cytoch:0.0000028127)99:0.0009391617,KJ509412_1_Cottus_pitensis_isolate_Pit_Ash5_cytoch:0.0000028127)92:0.0028285919)100:0.0161356269,((((((((((((KJ509429_1_Cottus_gulosus_isolate_Kaweah1_cytochro:0.0000028127,KJ509430_1_Cottus_gulosus_isolate_Kaweah2_cytochro:0.0000028127)35:0.0000028127,(KJ509432_1_Cottus_gulosus_isolate_Kaweah4_cytochro:0.0009538733,KJ509436_1_Cottus_gulosus_isolate_Kaweah8_cytochro:0.0009535942)38:0.0000028127)34:0.0000028127,(KJ509434_1_Cottus_gulosus_isolate_Kaweah6_cytochro:0.0000028127,KJ509442_1_Cottus_gulosus_isolate_Upper_Kingsgs6_c:0.0000028127)99:0.0009454526)30:0.0000028127,(KJ509431_1_Cottus_gulosus_isolate_Kaweah3_cytochro:0.0018939537,KJ509443_1_Cottus_gulosus_isolate_Upper_Kingsgs7_c:0.0009501597)92:0.0009453321)97:0.0009424920,((KJ509454_1_Cottus_gulosus_isolate_Merced1_cytochro:0.0000028127,KJ509455_1_Cottus_gulosus_isolate_Merced2_cytochro:0.0000028127)98:0.0009319387,((KJ509462_1_Cottus_gulosus_isolate_Upper_Tuolumne1_:0.0000028127,KJ509463_1_Cottus_gulosus_isolate_Upper_Tuolumne2_:0.0000028127)67:0.0000028127,(KJ509467_1_Cottus_gulosus_isolate_Upper_Tuolumne6_:0.0000028127,KJ509468_1_Cottus_gulosus_isolate_Upper_Tuolumne7_:0.0000028127)99:0.0009313957)98:0.0009314604)73:0.0000028127)31:0.0000028127,((((KJ509485_1_Cottus_gulosus_isolate_SF_American1_cyt:0.0000028127,KJ509486_1_Cottus_gulosus_isolate_SF_American2_cyt:0.0000028127)31:0.0000028127,(KJ509488_1_Cottus_gulosus_isolate_SF_American4_cyt:0.0009436002,KJ509489_1_Cottus_gulosus_isolate_SF_American5_cyt:0.0009405866)23:0.0000028127)20:0.0000028127,KJ509491_1_Cottus_gulosus_isolate_SF_American7_cyt:0.0009405917)26:0.0000028127,KJ509490_1_Cottus_gulosus_isolate_SF_American6_cyt:0.0018866178)98:0.0018871128)16:0.0000028127,(KJ509492_1_Cottus_gulosus_isolate_NMF_American1_cy:0.0000028127,KJ509493_1_Cottus_gulosus_isolate_NMF_American2_cy:0.0000028127)100:0.0009455094)17:0.0000028127,KJ509478_1_Cottus_gulosus_isolate_Mokelumne2_cytoc:0.0000028127)24:0.0000028127,KJ509477_1_Cottus_gulosus_isolate_Mokelumne1_cytoc:0.0000028127)97:0.0010029933,(KJ509469_1_Cottus_gulosus_isolate_Stanislaus1_cyto:0.0000028127,KJ509470_1_Cottus_gulosus_isolate_Stanislaus2_cyto:0.0000028127)99:0.0009497569)73:0.0000028215,KJ509506_1_Cottus_gulosus_isolate_Feather7_cytochr:0.0000028127)63:0.0000028215,((((KJ509500_1_Cottus_gulosus_isolate_Feather1_cytochr:0.0010427341,KJ509504_1_Cottus_gulosus_isolate_Feather5_cytochr:0.0000028127)60:0.0000028127,KJ509508_1_Cottus_gulosus_isolate_Feather9_cytochr:0.0021192971)73:0.0010481957,((KJ509501_1_Cottus_gulosus_isolate_Feather2_cytochr:0.0000028127,KJ509502_1_Cottus_gulosus_isolate_Feather3_cytochr:0.0000028127)49:0.0000028127,KJ509505_1_Cottus_gulosus_isolate_Feather6_cytochr:0.0010464702)40:0.0000028127)34:0.0000028127,KJ509507_1_Cottus_gulosus_isolate_Feather8_cytochr:0.0021138739)81:0.0010454860)95:0.0089702410)88:0.0072550857)100:0.0650870029)100:0.0191712980);
+
+TIME STAMP
+----------
+
+Date and time: Wed Mar 23 10:12:01 2022
+Total CPU time used: 37.732646 seconds (0h:0m:37s)
+Total wall-clock time used: 40.95656514 seconds (0h:0m:40s)
+

@@ -1,0 +1,336 @@
+IQ-TREE multicore version 2.0-rc1 for Mac OS X 64-bit built Nov 21 2019
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    Macs-MBP-2 (AVX, 16 GB RAM)
+Command: iqtree -s cytb.phylip.uniqueseq.phy -st DNA -m MFP -bb 1000 -alrt 1000 -redo
+Seed:    97814 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Mar 23 10:11:05 2022
+Kernel:  AVX - 1 threads (4 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 4 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file cytb.phylip.uniqueseq.phy ... Phylip format detected
+Alignment most likely contains DNA/RNA sequences
+Alignment has 83 sequences with 1081 columns, 172 distinct patterns
+142 parsimony-informative, 27 singleton sites, 912 constant sites
+                                                    Gap/Ambiguity  Composition  p-value
+   1  AF549116_1_1_1057_Cottus_beldingi_isolate_CBG03_cy    2.31%    passed     93.46%
+   2  AF549117_1_1_1057_Cottus_beldingi_isolate_CBG04_cy    2.22%    passed     94.06%
+   3  AY833337_1_1_1050_Cottus_beldingii_cytochrome_b__c    3.05%    passed     99.25%
+   4  EU836699_1_7_1087_Cottus_asper_cytochrome_b__cytb_    0.00%    passed     88.38%
+   5  JX484692_1_Cottus_gulosus_isolate_RR1_cytochrome_b   11.19%    passed     92.64%
+   6  JX484693_1_Cottus_gulosus_isolate_RR2_cytochrome_b   11.19%    passed     89.19%
+   7  KJ509369_1_Cottus_pitensis_isolate_Pit_11_cytochro    0.00%    passed     99.56%
+   8  KJ509370_1_Cottus_pitensis_isolate_Pit_12_cytochro    0.00%    passed     99.56%
+   9  KJ509373_1_Cottus_pitensis_isolate_Pit_15_cytochro    0.83%    passed     99.20%
+  10  KJ509374_1_Cottus_pitensis_isolate_Pit_16_cytochro    0.83%    passed     99.20%
+  11  KJ509395_1_Cottus_pitensis_isolate_Pit_Clark5_cyto   11.01%    passed     98.24%
+  12  KJ509397_1_Cottus_pitensis_isolate_Pit_Clark7_cyto    0.83%    passed     99.35%
+  13  KJ509400_1_Cottus_pitensis_isolate_Pit_Fall1_cytoc   11.01%    passed     97.82%
+  14  KJ509401_1_Cottus_pitensis_isolate_Pit_Fall2_cytoc   11.01%    passed     97.82%
+  15  KJ509408_1_Cottus_pitensis_isolate_Pit_Ash1_cytoch    0.00%    passed     99.56%
+  16  KJ509409_1_Cottus_pitensis_isolate_Pit_Ash2_cytoch    0.00%    passed     99.56%
+  17  KJ509412_1_Cottus_pitensis_isolate_Pit_Ash5_cytoch    0.00%    passed     99.66%
+  18  KJ509413_1_Cottus_pitensis_isolate_Pit_SF1_cytochr    0.00%    passed     99.56%
+  19  KJ509414_1_Cottus_pitensis_isolate_Pit_SF2_cytochr    0.00%    passed     99.56%
+  20  KJ509420_1_Cottus_pitensis_isolate_Pit_SF8_cytochr    0.00%    passed     99.66%
+  21  KJ509429_1_Cottus_gulosus_isolate_Kaweah1_cytochro    1.57%    passed     99.83%
+  22  KJ509430_1_Cottus_gulosus_isolate_Kaweah2_cytochro    1.57%    passed     99.83%
+  23  KJ509431_1_Cottus_gulosus_isolate_Kaweah3_cytochro    0.83%    passed     99.88%
+  24  KJ509432_1_Cottus_gulosus_isolate_Kaweah4_cytochro    1.67%    passed     99.79%
+  25  KJ509434_1_Cottus_gulosus_isolate_Kaweah6_cytochro    1.11%    passed     99.98%
+  26  KJ509436_1_Cottus_gulosus_isolate_Kaweah8_cytochro    1.57%    passed     99.80%
+  27  KJ509442_1_Cottus_gulosus_isolate_Upper_Kingsgs6_c    1.11%    passed     99.98%
+  28  KJ509443_1_Cottus_gulosus_isolate_Upper_Kingsgs7_c    1.67%    passed     99.55%
+  29  KJ509454_1_Cottus_gulosus_isolate_Merced1_cytochro    0.00%    passed     99.41%
+  30  KJ509455_1_Cottus_gulosus_isolate_Merced2_cytochro    0.00%    passed     99.41%
+  31  KJ509462_1_Cottus_gulosus_isolate_Upper_Tuolumne1_    0.00%    passed     98.64%
+  32  KJ509463_1_Cottus_gulosus_isolate_Upper_Tuolumne2_    0.00%    passed     98.64%
+  33  KJ509467_1_Cottus_gulosus_isolate_Upper_Tuolumne6_    0.00%    passed     98.44%
+  34  KJ509468_1_Cottus_gulosus_isolate_Upper_Tuolumne7_    0.00%    passed     98.44%
+  35  KJ509469_1_Cottus_gulosus_isolate_Stanislaus1_cyto    1.48%    passed     99.99%
+  36  KJ509470_1_Cottus_gulosus_isolate_Stanislaus2_cyto    1.48%    passed     99.99%
+  37  KJ509477_1_Cottus_gulosus_isolate_Mokelumne1_cytoc    0.83%    passed     99.77%
+  38  KJ509478_1_Cottus_gulosus_isolate_Mokelumne2_cytoc    0.83%    passed     99.77%
+  39  KJ509485_1_Cottus_gulosus_isolate_SF_American1_cyt    0.83%    passed     99.16%
+  40  KJ509486_1_Cottus_gulosus_isolate_SF_American2_cyt    0.83%    passed     99.16%
+  41  KJ509488_1_Cottus_gulosus_isolate_SF_American4_cyt    0.83%    passed     98.80%
+  42  KJ509489_1_Cottus_gulosus_isolate_SF_American5_cyt    0.83%    passed     99.27%
+  43  KJ509490_1_Cottus_gulosus_isolate_SF_American6_cyt    0.83%    passed     97.49%
+  44  KJ509491_1_Cottus_gulosus_isolate_SF_American7_cyt    0.83%    passed     99.27%
+  45  KJ509492_1_Cottus_gulosus_isolate_NMF_American1_cy    1.30%    passed     99.89%
+  46  KJ509493_1_Cottus_gulosus_isolate_NMF_American2_cy    1.30%    passed     99.89%
+  47  KJ509500_1_Cottus_gulosus_isolate_Feather1_cytochr   11.01%    passed     91.78%
+  48  KJ509501_1_Cottus_gulosus_isolate_Feather2_cytochr   11.01%    passed     92.32%
+  49  KJ509502_1_Cottus_gulosus_isolate_Feather3_cytochr   11.01%    passed     92.32%
+  50  KJ509504_1_Cottus_gulosus_isolate_Feather5_cytochr   11.01%    passed     89.39%
+  51  KJ509505_1_Cottus_gulosus_isolate_Feather6_cytochr   11.01%    passed     93.80%
+  52  KJ509506_1_Cottus_gulosus_isolate_Feather7_cytochr   11.01%    passed     89.75%
+  53  KJ509507_1_Cottus_gulosus_isolate_Feather8_cytochr   11.01%    passed     92.32%
+  54  KJ509508_1_Cottus_gulosus_isolate_Feather9_cytochr   11.84%    passed     83.11%
+  55  KJ509513_1_Cottus_gulosus_isolate_Sac_RM2055_cytoc   11.01%    passed     96.36%
+  56  KJ509514_1_Cottus_gulosus_isolate_Sac_RM2056_cytoc   11.01%    passed     96.71%
+  57  KJ509515_1_Cottus_gulosus_isolate_Sac_RM2057_cytoc   11.01%    passed     98.27%
+  58  KJ509516_1_Cottus_gulosus_isolate_Sac_RM2058_cytoc   11.01%    passed     98.24%
+  59  KJ509521_1_Cottus_gulosus_isolate_Sac_RBDD5_cytoch   11.01%    passed     98.24%
+  60  KJ509522_1_Cottus_gulosus_isolate_Sac_RBDD6_cytoch   11.01%    passed     98.75%
+  61  KJ509523_1_Cottus_gulosus_isolate_Sac_RBDD7_cytoch   11.01%    passed     98.75%
+  62  KJ509524_1_Cottus_gulosus_isolate_Sac_RBDD8_cytoch   11.01%    passed     95.86%
+  63  KJ509532_1_Cottus_gulosus_isolate_Sac_Clear2_cytoc   11.01%    passed     98.27%
+  64  KJ509533_1_Cottus_gulosus_isolate_Sac_Clear3_cytoc   11.01%    passed     98.27%
+  65  KJ509543_1_Cottus_gulosus_isolate_Sac_Clear13_cyto    0.00%    passed     99.79%
+  66  KJ509551_1_Cottus_gulosus_isolate_Sac_Sims8_cytoch    0.83%    passed     99.35%
+  67  KJ509560_1_Cottus_gulosus_isolate_Sac_Dunsmuir2_cy   11.01%    passed     98.24%
+  68  KJ509561_1_Cottus_gulosus_isolate_Penitencia1_cyto    0.83%    passed     84.67%
+  69  KJ509562_1_Cottus_gulosus_isolate_Penitencia2_cyto    0.83%    passed     84.67%
+  70  KJ509563_1_Cottus_gulosus_isolate_Penitencia3_cyto    0.83%    passed     93.49%
+  71  KJ509564_1_Cottus_gulosus_isolate_Penitencia4_cyto   14.06%    passed     95.99%
+  72  KJ509565_1_Cottus_gulosus_isolate_Penitencia5_cyto   14.06%    passed     95.99%
+  73  KJ509566_1_Cottus_gulosus_isolate_Penitencia6_cyto    7.12%    passed     93.81%
+  74  KJ509567_1_Cottus_gulosus_isolate_Penitencia7_cyto    7.12%    passed     91.93%
+  75  KJ509568_1_Cottus_gulosus_isolate_Penitencia8_cyto    7.12%    passed     91.93%
+  76  KJ509572_1_Cottus_gulosus_isolate_Guadalupe4_cytoc    0.83%    passed     88.05%
+  77  KJ509573_1_Cottus_gulosus_isolate_Guadalupe5_cytoc    0.83%    passed     88.05%
+  78  KJ509575_1_Cottus_gulosus_isolate_Guadalupe7_cytoc    0.83%    passed     93.49%
+  79  KJ509576_1_Cottus_gulosus_isolate_Guadalupe8_cytoc    0.83%    passed     86.51%
+  80  KJ509577_1_Cottus_gulosus_isolate_Uvas1_cytochrome    1.30%    passed     91.52%
+  81  KJ509578_1_Cottus_gulosus_isolate_Uvas2_cytochrome    1.30%    passed     91.52%
+  82  KJ509583_1_Cottus_gulosus_isolate_Uvas7_cytochrome    1.30%    passed     90.78%
+  83  MF326939_1_14412_15492_Cottus_asper_mitochondrion_    0.00%    passed     82.75%
+****  TOTAL                                                 4.32%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: KJ509370_1_Cottus_pitensis_isolate_Pit_12_cytochro is identical to KJ509369_1_Cottus_pitensis_isolate_Pit_11_cytochro but kept for subsequent analysis
+NOTE: KJ509374_1_Cottus_pitensis_isolate_Pit_16_cytochro is identical to KJ509373_1_Cottus_pitensis_isolate_Pit_15_cytochro but kept for subsequent analysis
+NOTE: KJ509560_1_Cottus_gulosus_isolate_Sac_Dunsmuir2_cy is identical to KJ509395_1_Cottus_pitensis_isolate_Pit_Clark5_cyto but kept for subsequent analysis
+NOTE: KJ509401_1_Cottus_pitensis_isolate_Pit_Fall2_cytoc is identical to KJ509400_1_Cottus_pitensis_isolate_Pit_Fall1_cytoc but kept for subsequent analysis
+NOTE: KJ509409_1_Cottus_pitensis_isolate_Pit_Ash2_cytoch is identical to KJ509408_1_Cottus_pitensis_isolate_Pit_Ash1_cytoch but kept for subsequent analysis
+NOTE: KJ509414_1_Cottus_pitensis_isolate_Pit_SF2_cytochr is identical to KJ509413_1_Cottus_pitensis_isolate_Pit_SF1_cytochr but kept for subsequent analysis
+NOTE: KJ509430_1_Cottus_gulosus_isolate_Kaweah2_cytochro is identical to KJ509429_1_Cottus_gulosus_isolate_Kaweah1_cytochro but kept for subsequent analysis
+NOTE: KJ509442_1_Cottus_gulosus_isolate_Upper_Kingsgs6_c is identical to KJ509434_1_Cottus_gulosus_isolate_Kaweah6_cytochro but kept for subsequent analysis
+NOTE: KJ509455_1_Cottus_gulosus_isolate_Merced2_cytochro is identical to KJ509454_1_Cottus_gulosus_isolate_Merced1_cytochro but kept for subsequent analysis
+NOTE: KJ509463_1_Cottus_gulosus_isolate_Upper_Tuolumne2_ is identical to KJ509462_1_Cottus_gulosus_isolate_Upper_Tuolumne1_ but kept for subsequent analysis
+NOTE: KJ509468_1_Cottus_gulosus_isolate_Upper_Tuolumne7_ is identical to KJ509467_1_Cottus_gulosus_isolate_Upper_Tuolumne6_ but kept for subsequent analysis
+NOTE: KJ509470_1_Cottus_gulosus_isolate_Stanislaus2_cyto is identical to KJ509469_1_Cottus_gulosus_isolate_Stanislaus1_cyto but kept for subsequent analysis
+NOTE: KJ509478_1_Cottus_gulosus_isolate_Mokelumne2_cytoc is identical to KJ509477_1_Cottus_gulosus_isolate_Mokelumne1_cytoc but kept for subsequent analysis
+NOTE: KJ509486_1_Cottus_gulosus_isolate_SF_American2_cyt is identical to KJ509485_1_Cottus_gulosus_isolate_SF_American1_cyt but kept for subsequent analysis
+NOTE: KJ509493_1_Cottus_gulosus_isolate_NMF_American2_cy is identical to KJ509492_1_Cottus_gulosus_isolate_NMF_American1_cy but kept for subsequent analysis
+NOTE: KJ509502_1_Cottus_gulosus_isolate_Feather3_cytochr is identical to KJ509501_1_Cottus_gulosus_isolate_Feather2_cytochr but kept for subsequent analysis
+NOTE: KJ509521_1_Cottus_gulosus_isolate_Sac_RBDD5_cytoch is identical to KJ509516_1_Cottus_gulosus_isolate_Sac_RM2058_cytoc but kept for subsequent analysis
+NOTE: KJ509523_1_Cottus_gulosus_isolate_Sac_RBDD7_cytoch is identical to KJ509522_1_Cottus_gulosus_isolate_Sac_RBDD6_cytoch but kept for subsequent analysis
+NOTE: KJ509533_1_Cottus_gulosus_isolate_Sac_Clear3_cytoc is identical to KJ509532_1_Cottus_gulosus_isolate_Sac_Clear2_cytoc but kept for subsequent analysis
+NOTE: KJ509562_1_Cottus_gulosus_isolate_Penitencia2_cyto is identical to KJ509561_1_Cottus_gulosus_isolate_Penitencia1_cyto but kept for subsequent analysis
+NOTE: KJ509575_1_Cottus_gulosus_isolate_Guadalupe7_cytoc is identical to KJ509563_1_Cottus_gulosus_isolate_Penitencia3_cyto but kept for subsequent analysis
+NOTE: KJ509565_1_Cottus_gulosus_isolate_Penitencia5_cyto is identical to KJ509564_1_Cottus_gulosus_isolate_Penitencia4_cyto but kept for subsequent analysis
+NOTE: KJ509568_1_Cottus_gulosus_isolate_Penitencia8_cyto is identical to KJ509567_1_Cottus_gulosus_isolate_Penitencia7_cyto but kept for subsequent analysis
+NOTE: KJ509573_1_Cottus_gulosus_isolate_Guadalupe5_cytoc is identical to KJ509572_1_Cottus_gulosus_isolate_Guadalupe4_cytoc but kept for subsequent analysis
+NOTE: KJ509578_1_Cottus_gulosus_isolate_Uvas2_cytochrome is identical to KJ509577_1_Cottus_gulosus_isolate_Uvas1_cytochrome but kept for subsequent analysis
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.005 seconds
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -2903.102
+Optimal log-likelihood: -2903.098
+Rate parameters:  A-C: 1.43755  A-G: 12.40519  A-T: 0.62472  C-G: 1.01094  C-T: 2.94575  G-T: 1.00000
+Base frequencies:  A: 0.226  C: 0.327  G: 0.162  T: 0.285
+Proportion of invariable sites: 0.420
+Gamma shape alpha: 0.630
+Parameters optimization took 1 rounds (0.028 sec)
+Time for fast ML tree search: 0.249 seconds
+
+NOTE: ModelFinder requires 5 MB RAM!
+ModelFinder will test up to 286 DNA models (sample size: 1081) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  GTR+F         2945.756     171 6233.512     6298.225     7086.057
+  2  GTR+F+I       2903.554     172 6151.108     6216.649     7008.638
+  3  GTR+F+G4      2903.421     172 6150.842     6216.383     7008.372
+  4  GTR+F+I+G4    2903.096     173 6152.193     6218.570     7014.709
+  5  GTR+F+R2      2904.260     173 6154.520     6220.897     7017.036
+  6  GTR+F+R3      2903.869     175 6157.737     6225.803     7030.224
+ 15  SYM+I         2937.695     169 6213.390     6276.464     7055.964
+ 16  SYM+G4        2937.487     169 6212.973     6276.047     7055.546
+ 17  SYM+I+G4      2937.021     170 6214.042     6277.932     7061.601
+ 18  SYM+R2        2937.942     170 6215.883     6279.774     7063.443
+ 28  TVM+F+I       2933.765     171 6209.530     6274.243     7062.074
+ 29  TVM+F+G4      2933.273     171 6208.546     6273.259     7061.091
+ 30  TVM+F+I+G4    2931.864     172 6207.729     6273.270     7065.259
+ 31  TVM+F+R2      2931.707     172 6207.414     6272.956     7064.945
+ 41  TVMe+I        2949.825     168 6235.651     6297.914     7073.239
+ 42  TVMe+G4       2949.311     168 6234.621     6296.884     7072.209
+ 43  TVMe+I+G4     2948.211     169 6234.422     6297.495     7076.995
+ 44  TVMe+R2       2948.400     169 6234.801     6297.874     7077.374
+ 54  TIM3+F+I      2904.479     170 6148.959     6212.849     6996.518
+ 55  TIM3+F+G4     2904.344     170 6148.687     6212.577     6996.246
+ 56  TIM3+F+I+G4   2904.009     171 6150.019     6214.732     7002.563
+ 57  TIM3+F+R2     2905.183     171 6152.367     6217.079     7004.911
+ 67  TIM3e+I       2939.347     167 6212.695     6274.154     7045.297
+ 68  TIM3e+G4      2939.138     167 6212.276     6273.734     7044.878
+ 69  TIM3e+I+G4    2938.668     168 6213.336     6275.599     7050.924
+ 70  TIM3e+R2      2939.603     168 6215.206     6277.469     7052.794
+ 80  TIM2+F+I      2906.011     170 6152.022     6215.912     6999.581
+ 81  TIM2+F+G4     2905.856     170 6151.711     6215.601     6999.270
+ 82  TIM2+F+I+G4   2905.508     171 6153.017     6217.730     7005.562
+ 83  TIM2+F+R2     2906.668     171 6155.336     6220.049     7007.881
+ 93  TIM2e+I       2940.641     167 6215.283     6276.742     7047.885
+ 94  TIM2e+G4      2940.420     167 6214.840     6276.298     7047.442
+ 95  TIM2e+I+G4    2939.941     168 6215.883     6278.146     7053.471
+ 96  TIM2e+R2      2940.852     168 6217.705     6279.968     7055.292
+106  TIM+F+I       2904.739     170 6149.478     6213.368     6997.037
+107  TIM+F+G4      2904.583     170 6149.167     6213.057     6996.726
+108  TIM+F+I+G4    2904.247     171 6150.493     6215.206     7003.038
+109  TIM+F+R2      2905.399     171 6152.799     6217.512     7005.344
+119  TIMe+I        2939.804     167 6213.608     6275.067     7046.211
+120  TIMe+G4       2939.592     167 6213.185     6274.644     7045.787
+121  TIMe+I+G4     2939.135     168 6214.269     6276.532     7051.857
+122  TIMe+R2       2940.050     168 6216.101     6278.364     7053.689
+132  TPM3u+F+I     2934.691     169 6207.382     6270.456     7049.956
+133  TPM3u+F+G4    2934.197     169 6206.394     6269.468     7048.968
+134  TPM3u+F+I+G4  2932.807     170 6205.614     6269.504     7053.173
+135  TPM3u+F+R2    2932.678     170 6205.356     6269.246     7052.915
+145  TPM3+F+I      2934.691     169 6207.382     6270.456     7049.956
+146  TPM3+F+G4     2934.197     169 6206.394     6269.468     7048.968
+147  TPM3+F+I+G4   2932.807     170 6205.614     6269.504     7053.173
+148  TPM3+F+R2     2932.678     170 6205.356     6269.246     7052.915
+158  TPM2u+F+I     2935.990     169 6209.980     6273.053     7052.553
+159  TPM2u+F+G4    2935.521     169 6209.043     6272.116     7051.616
+160  TPM2u+F+I+G4  2934.102     170 6208.204     6272.094     7055.763
+161  TPM2u+F+R2    2933.917     170 6207.833     6271.723     7055.392
+171  TPM2+F+I      2935.990     169 6209.980     6273.053     7052.553
+172  TPM2+F+G4     2935.521     169 6209.043     6272.116     7051.616
+173  TPM2+F+I+G4   2934.102     170 6208.204     6272.094     7055.763
+174  TPM2+F+R2     2933.917     170 6207.833     6271.723     7055.392
+184  K3Pu+F+I      2934.787     169 6207.573     6270.647     7050.147
+185  K3Pu+F+G4     2934.315     169 6206.629     6269.703     7049.203
+186  K3Pu+F+I+G4   2932.889     170 6205.778     6269.668     7053.337
+187  K3Pu+F+R2     2932.689     170 6205.377     6269.268     7052.937
+197  K3P+I         2951.790     166 6235.579     6296.240     7063.196
+198  K3P+G4        2951.315     166 6234.630     6295.291     7062.247
+199  K3P+I+G4      2950.232     167 6234.464     6295.923     7067.066
+200  K3P+R2        2950.403     167 6234.806     6296.265     7067.408
+210  TN+F+I        2906.022     169 6150.044     6213.117     6992.617
+211  TN+F+G4       2905.865     169 6149.730     6212.804     6992.304
+212  TN+F+I+G4     2905.519     170 6151.037     6214.928     6998.597
+213  TN+F+R2       2906.680     170 6153.359     6217.249     7000.918
+223  TNe+I         2941.272     166 6214.543     6275.204     7042.160
+224  TNe+G4        2941.055     166 6214.111     6274.772     7041.727
+225  TNe+I+G4      2940.586     167 6215.173     6276.631     7047.775
+226  TNe+R2        2941.502     167 6217.005     6278.464     7049.607
+236  HKY+F+I       2936.014     168 6208.027     6270.290     7045.615
+237  HKY+F+G4      2935.545     168 6207.090     6269.353     7044.677
+238  HKY+F+I+G4    2934.133     169 6206.265     6269.339     7048.839
+239  HKY+F+R2      2933.952     169 6205.903     6268.977     7048.477
+249  K2P+I         2953.245     165 6236.489     6296.358     7059.120
+250  K2P+G4        2952.766     165 6235.533     6295.402     7058.164
+251  K2P+I+G4      2951.684     166 6235.367     6296.028     7062.984
+252  K2P+R2        2951.863     166 6235.725     6296.386     7063.342
+262  F81+F+I       3007.236     167 6348.472     6409.931     7181.074
+263  F81+F+G4      3006.859     167 6347.718     6409.177     7180.320
+264  F81+F+I+G4    3006.215     168 6348.430     6410.693     7186.017
+265  F81+F+R2      3006.722     168 6349.443     6411.706     7187.031
+275  JC+I          3028.143     164 6384.287     6443.370     7201.932
+276  JC+G4         3027.662     164 6383.324     6442.407     7200.970
+277  JC+I+G4       3026.810     165 6383.620     6443.489     7206.251
+278  JC+R2         3027.147     165 6384.293     6444.162     7206.924
+Akaike Information Criterion:           TIM3+F+G4
+Corrected Akaike Information Criterion: TIM3+F+G4
+Bayesian Information Criterion:         TN+F+G4
+Best-fit model: TN+F+G4 chosen according to BIC
+
+All model information printed to cytb.phylip.uniqueseq.phy.model.gz
+CPU time for ModelFinder: 14.714 seconds (0h:0m:14s)
+Wall-clock time for ModelFinder: 15.850 seconds (0h:0m:15s)
+Generating 1000 samples for ultrafast bootstrap (seed: 97814)...
+
+NOTE: 2 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -2905.865
+Optimal log-likelihood: -2905.865
+Rate parameters:  A-C: 1.00000  A-G: 11.94414  A-T: 1.00000  C-G: 1.00000  C-T: 2.81411  G-T: 1.00000
+Base frequencies:  A: 0.226  C: 0.327  G: 0.162  T: 0.285
+Gamma shape alpha: 0.170
+Parameters optimization took 1 rounds (0.022 sec)
+Computing ML distances based on estimated model parameters... 0.150 sec
+Computing BIONJ tree...
+0.005 seconds
+Log-likelihood of BIONJ tree: -2906.688
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.453 second
+Computing log-likelihood of 98 initial trees ... 0.609 seconds
+Current best score: -2904.312
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -2904.172
+Iteration 10 / LogL: -2905.628 / Time: 0h:0m:3s
+Iteration 20 / LogL: -2905.587 / Time: 0h:0m:5s
+Finish initializing candidate tree set (20)
+Current best tree score: -2904.172 / CPU time: 5.674
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 21: -2903.139
+Iteration 30 / LogL: -2903.162 / Time: 0h:0m:9s (0h:0m:28s left)
+Iteration 40 / LogL: -2905.674 / Time: 0h:0m:12s (0h:0m:25s left)
+Iteration 50 / LogL: -2903.144 / Time: 0h:0m:15s (0h:0m:22s left)
+Log-likelihood cutoff on original alignment: -2957.003
+Iteration 60 / LogL: -2903.155 / Time: 0h:0m:18s (0h:0m:19s left)
+Iteration 70 / LogL: -2925.526 / Time: 0h:0m:21s (0h:0m:16s left)
+Iteration 80 / LogL: -2908.266 / Time: 0h:0m:24s (0h:0m:12s left)
+Iteration 90 / LogL: -2921.500 / Time: 0h:0m:27s (0h:0m:9s left)
+Iteration 100 / LogL: -2903.149 / Time: 0h:0m:31s (0h:0m:6s left)
+Log-likelihood cutoff on original alignment: -2957.003
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.993
+Iteration 110 / LogL: -2905.171 / Time: 0h:0m:34s (0h:0m:28s left)
+Iteration 120 / LogL: -2908.960 / Time: 0h:0m:38s (0h:0m:25s left)
+TREE SEARCH COMPLETED AFTER 122 ITERATIONS / Time: 0h:0m:38s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -2903.139
+Optimal log-likelihood: -2903.139
+Rate parameters:  A-C: 1.00000  A-G: 12.33827  A-T: 1.00000  C-G: 1.00000  C-T: 2.85296  G-T: 1.00000
+Base frequencies:  A: 0.226  C: 0.327  G: 0.162  T: 0.285
+Gamma shape alpha: 0.170
+Parameters optimization took 1 rounds (0.016 sec)
+BEST SCORE FOUND : -2903.139
+
+Testing tree branches by SH-like aLRT with 1000 replicates...
+1.399 sec.
+Creating bootstrap support values...
+Split supports printed to NEXUS file cytb.phylip.uniqueseq.phy.splits.nex
+Total tree length: 0.253
+
+Total number of iterations: 122
+CPU time used for tree search: 35.695 sec (0h:0m:35s)
+Wall-clock time used for tree search: 38.716 sec (0h:0m:38s)
+Total CPU time used: 37.733 sec (0h:0m:37s)
+Total wall-clock time used: 40.863 sec (0h:0m:40s)
+
+Computing bootstrap consensus tree...
+Reading input file cytb.phylip.uniqueseq.phy.splits.nex...
+83 taxa and 1044 splits.
+Consensus tree written to cytb.phylip.uniqueseq.phy.contree
+Reading input trees file cytb.phylip.uniqueseq.phy.contree
+Log-likelihood of consensus tree: -2903.277
+
+Analysis results written to: 
+  IQ-TREE report:                cytb.phylip.uniqueseq.phy.iqtree
+  Maximum-likelihood tree:       cytb.phylip.uniqueseq.phy.treefile
+  Likelihood distances:          cytb.phylip.uniqueseq.phy.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          cytb.phylip.uniqueseq.phy.splits.nex
+  Consensus tree:                cytb.phylip.uniqueseq.phy.contree
+  Screen log file:               cytb.phylip.uniqueseq.phy.log
+
+Date and Time: Wed Mar 23 10:12:01 2022
