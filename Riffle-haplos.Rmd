@@ -1,0 +1,91 @@
+---
+title: "Riffle-haplos"
+author: "Mac Campbell"
+date: "3/29/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+```{r}
+library(ape)
+library(pegas)
+```
+
+##Haplotype network in R
+
+https://johnbhorne.wordpress.com/2016/09/15/still-making-haplotype-networks-the-old-way-how-to-do-it-in-r/
+
+(base) Macs-MBP-2:figure-y mac$ ../figure-nuc/shorten-names-sculpins.pl cytb.fasta  | perl -pe 's/_\d+$|_\d+//g' > haps.fasta
+mafft haps.fasta > haps.afasta
+
+cat  haps-no-ohlone.afasta  | perl -pe 's/Cottus.pitensis.*/C._pitensis/g' | perl -pe 's/Cottus.gulosus.Kaweah/C._g._gulosus/g' | perl -pe 's/Cottus.gulosus.Upper_Kingsgs/C._g._gulosus/g' | perl -pe 's/Cottus.gulosus.Lower_Kings/C._g._gulosus/g' | perl -pe 's/Cottus.gulosus.Merced/C._g._gulosus/g' | perl -pe 's/Cottus.gulosus.Upper_Tuolumne/C._g._gulosus/g' | perl -pe 's/Cottus.gulosus.Stanislaus/C._g._gulosus/g' | perl -pe 's/Cottus.gulosus.Mokelumne/C._g._gulosus/g' | perl -pe 's/Cottus.gulosus.\w+_American/C._g._wintu/g' | perl -pe 's/Cottus.gulosus.Feather/C._g._wintu/g' | perl -pe 's/Cottus.gulosus.Sac_\w+/C._g._wintu/g' > haps-no-ohlone-renamed.afasta
+
+```{r}
+#Naso<-read.dna(file="figure-y/haps.afasta", format="fasta")
+Naso<-read.dna(file="figure-y/haps-no-ohlone-renamed.afasta", format="fasta")
+
+Naso
+```
+
+```{r}
+NasoHaps <- haplotype(Naso)
+NasoHaps
+```
+
+
+```{r}
+NasoNet <- haploNet(NasoHaps)
+plot(NasoNet, size=attr(NasoNet,"freq"), fast=FALSE)
+#plot(NasoNet, size = attr(NasoNet, “freq”), fast = FALSE)
+```
+
+```{r}
+ind.hap<-with(
+  stack(setNames(attr(NasoHaps, "index"), rownames(NasoHaps))),
+  table(hap=ind, individuals=rownames(Naso)[values])
+ )
+ind.hap
+```
+
+```{r}
+plot(NasoNet, size=attr(NasoNet, "freq"), scale.ratio = 2, cex = 0.8, pie=ind.hap, labels = FALSE)
+
+legend("topright", c("C. g. gulosus", "C. g. wintu","C. pitensis"), text.col=2:5)
+```
+
+     
+```{r}
+plot(NasoNet, size=attr(NasoNet, "freq"), scale.ratio = 2, cex = 0.8, pie=ind.hap, labels = FALSE, bg = c("#DE9E66","#439AB0","#ACCC66"))
+```
+
+     
+```{r}
+pdf("figure-y/network.pdf", width=7, height=6)
+plot(NasoNet, size=attr(NasoNet, "freq"), scale.ratio = 2, cex = 0.8, pie=ind.hap, labels = FALSE, bg = c("#DE9E66","#439AB0","#ACCC66"))
+
+#legend("topright", c("C. g. gulosus", "C. g. wintu","C. pitensis"), text.col=2:5)
+dev.off()
+```
+
+
+
+```{r}
+ind.hap<-with(
+  stack(setNames(attr(NasoHaps, "index"), rownames(NasoHaps))),
+  table(hap=ind, individuals=rownames(Naso)[values])
+ )
+ind.hap
+```
+
+```{r}
+plot(NasoNet, size=attr(NasoNet, "freq"), scale.ratio = 2, cex = 0.8, pie=ind.hap, labels = FALSE)
+
+legend("topright", c("C. asper", "C. beldingii", "C. g. gulosus", "C. o. ohlone", "C. o. pomo","C. g. wintu","C. pitensis"),
+       text.col = 1:7)
+
+```
+
+     

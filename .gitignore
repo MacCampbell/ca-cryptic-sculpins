@@ -3,11 +3,14 @@
 /bams/
 /data/
 /ref/
+/supplementary-figure*/
 
-Riffle-*
-figure-y*
-figure-z*
-figure-nuc*
+
+Riffle-admix.Rmd
+figure-y.Rmd
+figure-z.Rmd
+figure-nuc.Rmd
+
 *html
 
 *DS_Store
