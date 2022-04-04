@@ -8,6 +8,6 @@ The data is roughly split between all Sculpins including outgroups, using bamlis
 ## Figures
 __4__ PCAs       
 __5__ Admixture Plots      
-__6__ ML Phylogeny       
-__7__ Network     
+__6__ SVDQuartets tree      
+__7__ TreeMix and Network     
 

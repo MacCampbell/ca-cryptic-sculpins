@@ -1,0 +1,31 @@
+PLINK v1.90b6.14 64-bit (7 Jan 2020)
+Options in effect:
+  --allow-extra-chr
+  --allow-no-sex
+  --bfile redoneChroms
+  --freq
+  --missing
+  --out redoneChroms
+  --within 84.clst
+
+Hostname: Macs-MBP-2
+Working directory: /Users/mac/github/ca-cryptic-sculpins/figure-z/temp
+Start time: Thu Mar 24 13:33:56 2022
+
+Random number seed: 1648157636
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+1407 variants loaded from .bim file.
+84 people (0 males, 0 females, 84 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to redoneChroms.nosex .
+--within: 15 clusters loaded, covering a total of 84 people.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 84 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.966596.
+--freq: Cluster-stratified allele frequencies (founders only) written to
+redoneChroms.frq.strat .
+--missing: Sample missing data report written to redoneChroms.imiss, and
+variant-based cluster-stratified missing data report written to
+redoneChroms.lmiss.
+
+End time: Thu Mar 24 13:33:56 2022

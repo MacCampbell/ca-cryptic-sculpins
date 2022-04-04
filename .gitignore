@@ -4,6 +4,10 @@
 /data/
 /ref/
 
+Riffle-*
+figure-y*
+figure-z*
+figure-nuc*
 *html
 
 *DS_Store

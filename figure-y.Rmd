@@ -84,7 +84,7 @@ anno
 ```{r}
 anno2<-anno %>% mutate(Taxon=ifelse(Location %in% c("Uvas","Guadalupe","Penitencia"), "C. o. ohlone", 
                              ifelse(Location %in% c("RR"), "C. o. pomo",
-                             ifelse(Location %in% c("Upper","Kaweah","SF","Merced","NMF","Mokelumne","Stanislaus","Feather"), "C. g. gulosus",
+                             ifelse(Location %in% c("Upper","Kaweah","Merced","Mokelumne","Stanislaus"), "C. g. gulosus", #dropped "SF", "NMF" Feather,
                              ifelse(Species =="pitensis", "C. pitensis","C. g. wintu")))))
 anno2
 ```
@@ -94,12 +94,17 @@ anno2
 dem<-ggtree(u3, layout = "rectangular")  %<+% anno2
 
 dem+
-  geom_point(data=e,  color="gray50", cex=3, alpha=0.75, pch=18) +
-  geom_point(data=d,  color="black", cex=3, alpha=0.75, pch=18) +
+  geom_point(data=e,  color="gray50", cex=4, alpha=0.75, pch=18) +
+  geom_point(data=d,  color="black", cex=4, alpha=0.9, pch=18) +
   geom_tippoint(aes(x=x+0.002, fill=Taxon),cex=3, pch=21, alpha=0.85) +
-  scale_fill_manual(labels=c("C. g. gulosus","C. g. wintu", "C. o. ohlone","C. o. pomo", "C. pitensis","Other"), values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50")) 
+  scale_fill_manual(labels=c("C. g. gulosus","C. g. wintu", "C. o. ohlone","C. o. pomo", "C. pitensis","Other"), values=c("#DE9E66","#439AB0","#E8BEFF","#EEF1A0","#ACCC66", "grey50")) +
+  geom_treescale() 
+  
 
-ggsave("figure-y/tree.jpeg", width=5, height=7)
+ggsave("figure-y/tree.jpeg", width=5, height=6)
+ggsave("figure-y/tree2.pdf", width=5, height=6)
 
   
 ```
+
+

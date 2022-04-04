@@ -1,0 +1,114 @@
+---
+title: "figure-7abc"
+author: "Mac Campbell"
+date: "04/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+### Get Meta
+
+```{r}
+data<-read_tsv("data/pcaSc75.edited.clst") %>% select(FID, Location) %>%
+  mutate(Color = ifelse(Location %in% c("PITMC","PITRC"), "#ACCC66", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "grey50",   #Prickly
+                           ifelse(Location %in% c("SAG"),"grey50", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"#E8BEFF", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "#EEF1A0", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "#DE9E66", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "#439AB0", "grey50")))))))) %>%
+  mutate(Taxon = ifelse(Location %in% c("PITMC","PITRC"), "C. pitensis", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "Other",   #Prickly
+                           ifelse(Location %in% c("SAG"),"Other", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"C. o. ohlone", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "C. o. pomo", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "C. g. gulosus", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "C. g. wintu", "Other")))))))) %>%
+  mutate(Names = ifelse(Location %in% c("PITMC","PITRC"), "C. pitensis", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "C. asper",   #Prickly
+                           ifelse(Location %in% c("SAG"),"C. beldingii", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"C. o. ohlone", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "C. o. pomo", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "C. g. gulosus", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "C. g. wintu", "Other"))))))))
+```
+
+
+## Treemix
+
+A text file with no header line, and one line per sample with the following three fields:
+
+1 Family ID 2 Within-family ID 3 Cluster name
+
+`cp ../figure-6/84/recode.prune.reheadered.vcf ./84-recode.prune.reheadered.vcf`      
+`cat ../figure-6/84/samples.tsv | awk '{print $1, $1}' > 84-part1.txt`      
+`cat ../figure-6/84/samples.tsv | cut -f 1 -d '_' > 84-part2.txt`     
+`paste 84-part1.txt 84-part2.txt  > 84.clst`      
+
+`cat 84-recode.prune.reheadered.vcf | perl -pe 's/^R0/chr/g'| perl -pe 's/ID=R0/ID=chr/g' > redoneChroms.vcf`      
+    
+Some tidying up now working /treemix-files/      
+then a problem with chroms... https://www.biostars.org/p/109690/     
+
+`bcftools view -H redoneChroms.vcf | cut -f 1 | uniq | awk '{print $0"\t"$0}' > redoneChroms.chrom-map.txt`      
+
+`vcftools --vcf  redoneChroms.vcf --plink --mac 2 --remove-indels --max-alleles 2  --out redoneChroms --chrom-map redoneChroms.chrom-map.txt`     
+`plink --file redoneChroms --make-bed --out redoneChroms --allow-no-sex --allow-extra-chr # drop 0`     
+`plink --bfile redoneChroms --freq --missing  --within 84.clst --out redoneChroms --allow-no-sex --allow-extra-chr`      
+ 
+seems fine now.      
+
+gzip redoneChroms.frq.strat       
+
+plink2treemix.py redoneChroms.frq.strat.gz redoneChroms.treemix.frq.gz      
+
+
+`treemix -i redoneChroms.treemix.frq.gz -m 0 -o redone-noss-0 -root beldingii -bootstrap -k 10 -noss > treemix_0_log`   
+`treemix -i redoneChroms.treemix.frq.gz -m 1 -o redone-noss-1 -root beldingii -bootstrap -k 10 -noss > treemix_1_log`    
+`treemix -i redoneChroms.treemix.frq.gz -m 2 -o redone-noss-2 -root beldingii -bootstrap -k 10 -noss > treemix_2_log`      
+
+
+```{r}
+library(RColorBrewer)
+library(R.utils)
+source("~/treemix/treemix-1.13/src/plotting_funcs.R")
+
+```
+
+
+```{r}
+plot_tree(cex=0.8, "treemix-files/redone-noss-0")
+```
+
+```{r}
+getwd()
+
+prefix="treemix-files/redone-noss-"
+
+par(mfrow=c(1,3))
+for(edge in 0:2){
+  plot_tree(cex=0.8,paste0(prefix,edge))
+  title(paste(edge,"edges"))
+}
+```
+
+
+
+```{r}
+pdf("figure-7/figure-7abc.pdf")
+
+prefix="treemix-files/redone-noss-"
+
+par(mfrow=c(2,2))
+for(edge in 0:2){
+  plot_tree(cex=0.7,paste0(prefix,edge))
+  title(paste(edge,"edges"))
+}
+```

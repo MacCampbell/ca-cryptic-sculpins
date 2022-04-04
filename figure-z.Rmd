@@ -173,7 +173,6 @@ treemix -i redoneChroms.treemix.frq.gz -m 2 -o redone-2 -root beldingii -bootstr
 treemix -i redoneChroms.treemix.frq.gz -m 0 -o redone-noss-0 -root beldingii -bootstrap -k 10 -noss > treemix_0_log 
 treemix -i redoneChroms.treemix.frq.gz -m 1 -o redone-noss-1 -root beldingii -bootstrap -k 10 -noss > treemix_1_log 
 treemix -i redoneChroms.treemix.frq.gz -m 2 -o redone-noss-2 -root beldingii -bootstrap -k 10 -noss > treemix_2_log 
-treemix -i redoneChroms.treemix.frq.gz -m 3 -o redone-noss-3 -root beldingii -bootstrap -k 10 -noss > treemix_3_log 
 
 
 ```{sh,eval=FALSE}
