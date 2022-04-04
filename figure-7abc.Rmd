@@ -1,5 +1,5 @@
 ---
-title: "figure-7abc"
+title: "Figure-7abc"
 author: "Mac Campbell"
 date: "04/04/2022"
 output: html_document
