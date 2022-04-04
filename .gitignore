@@ -4,11 +4,15 @@
 /data/
 /ref/
 /supplementary-figure*/
+/supplementary-figure-s1/
 
 figure-z.Rmd
 Riffle-admix.Rmd
 figure-y.Rmd
 figure-nuc.Rmd
+
+Riffle-admix.Rmd
+Riffle-haplos.Rmd
 
 *html
 
