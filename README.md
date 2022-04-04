@@ -9,5 +9,8 @@ The data is roughly split between all Sculpins including outgroups, using bamlis
 __4__ PCAs       
 __5__ Admixture Plots      
 __6__ SVDQuartets tree      
-__7__ TreeMix and Network     
+__7__ TreeMix and Network
+
+_S1_ Riffle Sculpin admixture
+_S2_ Fst 
 

@@ -1,0 +1,167 @@
+---
+title: "Supplementary-Figure-S2"
+author: "Mac Campbell"
+date: "November 2, 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message=FALSE)
+```
+
+## Read in and rearrange Fst table
+
+```{r}
+library(tidyverse)
+library(viridis)
+library(gplots)
+```
+
+```{r}
+d<-read_tsv("fst/fst.tsv")
+d
+```
+
+```{r}
+d2<-d %>% pivot_longer(!Loc, names_to="Loc2", values_to = "Fst")
+d2
+```
+
+```{r}
+d3<-d2 %>% filter(Fst !="-") 
+d3$Fst<-as.numeric(d3$Fst)
+
+d3$Loc<-factor(d3$Loc, levels=d$Loc)
+d3$Loc2<-factor(d3$Loc2, levels=d$Loc)
+
+```
+
+Plot
+
+```{r}
+fst<-ggplot(drop_na(d3), aes(Loc, Loc2)) + 
+  geom_tile(aes(fill = Fst), color="white") + 
+  theme_minimal() +
+  scale_fill_viridis(discrete=FALSE, option = "cividis", space = "Lab", direction = -1) + 
+  theme_bw() + 
+  theme(axis.text.x=element_text(angle=45,vjust=1,size=10,hjust=1), panel.border=element_blank(),
+        panel.grid.major=element_blank(), axis.title.y = element_blank(), axis.title.x = element_blank()) + scale_y_discrete(position = "left") + 
+  geom_text(aes(label = round(Fst, 2)), size=3.5, colour = "white") +
+   theme(plot.title = element_text(face="bold", size=16)) 
+
+fst
+
+ggsave("supplementary-figure-s2/001-fst-plot.jpeg", width=8, height=6)
+```
+
+
+## Reorder
+
+```{r}
+m<-read_tsv("fst/fst-mat-2.tsv", col_names = FALSE) %>% as.matrix()
+m
+diag(m)
+```
+
+```{r}
+#https://stackoverflow.com/questions/33026183/r-make-symmetric-matrix-from-lower-diagonal
+
+makeSymm <- function(m) {
+   m[upper.tri(m)] <- t(m)[upper.tri(m)]
+   return(m)
+}
+m2<-makeSymm(m)
+m2
+```
+
+
+wow!!
+
+```{r}
+
+levels<-c("COY","GUAD","PEN","UVAS","RUS","RUSEF",
+                                            "HSS","McC HB", "SAC",
+                                            "PITMC","PITRC",
+                                            "MER","MOK",
+                                            "McC M", "NAP","WAD","SUS","PUT RR","CLS","PUT BC",
+                                            "SAG")
+
+names<-read_tsv("fst/fst-mat-2-vector.tsv", col_names=c("Location"))
+names$Location<-factor(names$Location, levels=levels)
+cols<-names %>% mutate(Color = ifelse(Location %in% c("PITMC","PITRC"), "#ACCC66", #Pit
+                           ifelse(Location %in% c("CLS","McC M","NAP","PUT BC","PUT RR","SUS","WAD"), "grey50",   #Prickly
+                           ifelse(Location %in% c("SAG"),"grey50", # Paiute
+                           ifelse(Location %in% c("COY","UVAS","PEN","GUAD"),"#E8BEFF", # C o o
+                           ifelse(Location %in% c("RUSEF","RUS"), "#EEF1A0", # C o p
+                           ifelse(Location %in% c("MER","MOK"), "#DE9E66", # C g g
+                           ifelse(Location %in% c("SAC","McC HB","HSS"), "#439AB0", "grey50"))))))))
+
+```
+
+```{r}
+colnames(m2)<-names$Location
+rownames(m2)<-names$Location
+```
+
+Reorder    
+
+```{r}
+
+entries<-c("COY","GUAD","PEN","UVAS","RUS","RUSEF",
+                                            "MER","MOK",
+                                            "HSS", "SAC",
+                                            "PITMC","PITRC",
+                                            "McC M", "NAP","WAD","SUS","PUT RR","PUT BC",
+                                            "SAG")
+reorder<-m2[, entries]
+reorder<-reorder[entries,]
+```
+
+
+```{r}
+write.table(reorder, file="fst/fst-reordered.csv",sep = ",")
+```
+
+```{r}
+m3<-as_tibble(m2)
+m3$Loc<-names$Location
+dfm<-m3 %>% pivot_longer(!Loc, names_to="Loc2", values_to = "Fst")
+dfm$Loc<-factor(dfm$Loc, levels=entries)
+dfm$Loc2<-factor(dfm$Loc2, levels=entries)
+cols$Location<-factor(cols$Location, levels=entries)
+cols2<- cols %>% arrange(Location)
+
+fst2<-ggplot(dfm, aes(Loc, Loc2)) + 
+  geom_tile(aes(fill = Fst), color="white") + 
+  theme_minimal() +
+  scale_fill_viridis(discrete=FALSE, option = "cividis", space = "Lab", direction = -1) + 
+  theme_bw() + 
+  theme(axis.text.x=element_text(angle=45,vjust=1,size=10,hjust=1,
+                                 color = cols2$Color, face="bold"),
+        axis.text.y=element_text(size=10, color=cols2$Color, face="bold"),
+   panel.border=element_blank(),
+   panel.grid.major=element_blank(), axis.title.y = element_blank(), 
+   axis.title.x = element_blank()) +     
+   scale_y_discrete(position = "left") + 
+   geom_text(aes(label = round(Fst, 2)), size=3.5, colour = "white") +
+   theme(plot.title = element_text(face="bold", size=16)) 
+
+fst2
+
+ggsave("supplementary-figure-s2/S2.jpg", width=10, height=9)
+ggsave("supplementary-figure-s2/s2.pdf", width=10, height=9)
+
+```
+
+
+```{r}
+heatmap.2(m2, trace="none",
+          key=TRUE, srtCol=45, margins = c(5,5), Rowv=FALSE, Colv=FALSE, col=cividis,
+          colRow = cols$Color)
+```
+
+```{r}
+pdf("supplementary-figure-s2/fst-heatmap.pdf", width=8, height=7)
+heatmap.2(m2, trace="none",
+          key=TRUE, srtCol=45, margins = c(5,5),  dendrogram=c("column"), col=viridis(15, direction=-1))
+```
