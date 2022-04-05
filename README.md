@@ -11,6 +11,7 @@ __5__ Admixture Plots
 __6__ SVDQuartets tree      
 __7__ TreeMix and Network
 
-_S1_ Riffle Sculpin admixture
-_S2_ Fst 
+_Supplementary Figure S1_ Riffle Sculpin admixture       
+
+_Supplementary Figure S2_ Fst 
 
