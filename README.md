@@ -13,5 +13,8 @@ __7__ TreeMix and Network
 
 _Supplementary Figure S1_ Riffle Sculpin admixture       
 
-_Supplementary Figure S2_ Fst 
+_Supplementary Figure S2_ Fst    
 
+## Tables
+_readcounts/readcounts.csv_ A table of total and properly paired deduplicated read counts     
+ 
