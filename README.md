@@ -22,8 +22,9 @@ _readcounts/readcounts.csv_ A table of total and properly paired deduplicated re
 ## Other Code    
 In subdirectories         
      
-/de-novo-git/ scripts for assembly of reference seqs. Corresponding data files are available at https://doi.org/10.25338/B86Q0K in de-novo-dryad.tar.gz      
-      
-      
 /additional-analysis-scripts/ scripts for additional analyses (J. Baumsteiger)
 
+/admixture-and-pca-files/ Ouput files from admixture and covariance analyses used to make figures and evaluate optimal K     
+
+/de-novo-git/ scripts for assembly of reference seqs. Corresponding data files are available at https://doi.org/10.25338/B86Q0K in de-novo-dryad.tar.gz      
+      
