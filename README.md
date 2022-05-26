@@ -1,5 +1,9 @@
 # ca-cryptic-sculpins
-Code for analyses of doi:xxxxyyy 
+Code for analyses and figures in Crytpic Species of Freshwater Sculpin (Cottidae: _Cottus_) in California, USA. Moyle PB and Campbell MA. Zootaxa doi:xxxxyyy     
+
+Zoobank publication lsid: urn:lsid:zoobank.org:pub:0590A223-BD2D-4B9E-8850-BEE818CA4D08      
+     
+Zoobank species lsid for _Cottus ohlone_ Moyle and Campbell 2022, Coastal Riffle Sculpin: urn:lsid:zoobank.org:act:8F6E51D6-5317-4F4E-9246-B2F30FBE7207       
 
 
 ## Bamlists
