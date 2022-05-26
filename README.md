@@ -18,3 +18,7 @@ _Supplementary Figure S2_ Fst
 ## Tables
 _readcounts/readcounts.csv_ A table of total and properly paired deduplicated read counts     
  
+
+## Other Code    
+In subdirectories     
+/de-novo-git/ scripts for assembly of reference seqs. Corresponding data files are available at https://doi.org/10.25338/B86Q0K in de-novo-dryad

@@ -1,0 +1,6 @@
+Pit_MC_P1_RA_QF.hash  5
+Pit_MC_P3_RA_QF.hash  5
+Pit_MC_P4_RA_QF.hash  4
+Pit_RC_P1_RA_QF.hash  4
+Pit_RC_P2_RA_QF.hash  4
+Pit_RC_P4_RA_QF.hash  6
