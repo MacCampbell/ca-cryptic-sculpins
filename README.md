@@ -25,5 +25,5 @@ In subdirectories
 /de-novo-git/ scripts for assembly of reference seqs. Corresponding data files are available at https://doi.org/10.25338/B86Q0K in de-novo-dryad.tar.gz      
       
       
-/additional-analysis-scripts/ scripts for additional analyses 
+/additional-analysis-scripts/ scripts for additional analyses (J. Baumsteiger)
 
